@@ -1,0 +1,153 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    outline: none;
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+body{
+    font-size: 10px;
+}
+
+
+/* header start*/
+header{
+    border:1px solid red;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    height: 70px;
+}
+
+header nav ul{
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+header nav ul li{
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.deskLeftSectionNav ul li{
+    padding: 22px 15px;
+    font-size: 1.6em;
+}
+
+.deskLeftSectionNav ul li:nth-child(2) div{
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #4ba82e;
+    border-right: 2px solid #4ba82e;
+    transform: rotate(135deg);
+    position: relative;
+    right: -20px;
+}
+
+.deskRightSectionNav{
+    display: flex;
+    position: absolute;
+    right: 0;
+    height: inherit;
+}
+.deskRightSectionNav li{
+    margin: 0 10px;
+}
+.deskRightSectionNav li a{
+    display: flex;
+}
+.deskRightSectionNav li a div{
+    margin: auto 0;
+}
+.deskRightSectionNav li:nth-child(n+4){
+    display: flex;
+    align-items: center;
+    border-left: 1px solid #ddd;
+    cursor: pointer;
+    margin: 0;
+    padding: 0 15px;
+}
+.deskRightSectionNav li:nth-child(5){
+    padding: 0 25px;
+}
+.deskRightSectionNav li img{
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+}
+.deskRightSectionNav li:nth-child(n+4) img{
+    width: 24px;
+}
+.deskRightSectionNav li:nth-child(5) img{
+    margin-right: 0;
+}
+
+@media (min-width: 945px){
+    .mobileRightSectionNav{
+        display: none;
+    }
+}
+
+@media (max-width: 945px){
+    html,body{
+        min-width: 414px;
+    }
+
+    header{
+        height: 50px;
+    }
+
+    .deskLeftSectionNav,
+    .deskRightSectionNav
+    {
+        display: none;
+    }
+    
+    .mobileRightSectionNav{
+        height: inherit;
+        display: flex;
+        align-items: center;
+        position: absolute;
+        right: 0;
+        
+    }
+
+    .mobileRightSectionNav a{
+        margin-right: 10px;
+    }
+
+    .container{
+        display: flex;
+        align-items: center;
+        height: 100%; 
+        border-left: 1px solid #ddd;
+    }
+
+    .iconHamburger{
+        width: 50px;
+    }
+
+    .hamburgerMenuStripe{
+        width: 40%;
+        height: 2px;
+        margin: 3px auto;
+        background: #4ba82e;
+    }
+    .navList{
+        
+    }
+}
+
+/* header end*/
