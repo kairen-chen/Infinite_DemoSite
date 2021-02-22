@@ -76,7 +76,7 @@
                     <div class="hamburgerMenuStripe"></div>
                 </div>
             </nav>
-            <div class="mobileMenuList active">
+            <div class="mobileMenuList">
                 <div class="searchContainer">
                     <input type="text" placeholder="我要搜尋…">
                     <div class="iconSearch">O</div>
@@ -108,5 +108,15 @@
     </header>
     
 </body>
+<script>
+    let mobileMenuList = document.querySelector(".mobileMenuList"),flag = false;
+    document
+        .querySelector(".iconHamburger")
+        .addEventListener("click", ()=>{
+            flag = mobileMenuList.classList.contains("active")
+            mobileMenuList.classList[flag ? "remove" : "add"]("active");
+            mobileMenuList.classList[flag ? "add" : "remove"]("remove");
+        })
+</script>
 </html>
 
