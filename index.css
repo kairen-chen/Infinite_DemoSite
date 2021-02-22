@@ -145,8 +145,13 @@ header nav ul li{
         margin: 3px auto;
         background: #4ba82e;
     }
-    .navList{
-        
+    .mobileNavList{
+        position: absolute;
+        left: 0;
+        top:50px;
+        height: 500px;
+        width: 100%;
+        background-color: wheat;
     }
 }
 
