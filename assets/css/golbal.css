@@ -27,6 +27,10 @@ body{
     position: relative;
 }
 
+img{
+    max-width: 100%;
+}
+
 
 .overlay{
     width: 100%;

@@ -96,10 +96,27 @@
         padding: 40px 0 80px;
     }
     .allCarType{
-        padding: 0 15%;
+        padding: 0 5%;
     }
     .allCarType > div{
-        flex-basis: calc(100% / 2);
+        flex-basis: calc((100% / 2) - 40px);
+        margin: 0 20px;
     }
+    .allCarType > div > span{
+        font-size: 2.0em;
+    }
+    
+}
 
+@media (max-width: 678px){
+    .allCarType{
+        padding: 0 ;
+    }
+    .allCarType > div{
+        flex-basis: calc((100% / 2) - 20px);
+        margin: 0 10px;
+    }
+    .allCarType > div > span{
+        font-size: 1.8em;
+    }
 }
