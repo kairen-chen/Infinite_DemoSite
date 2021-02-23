@@ -5,12 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
     <title>Use CSS.Jquery build website</title>
-
-    <link rel="stylesheet" type="text/css" href="index.css">
-</head>
+ 
+    <link rel="stylesheet" type="text/css" href="./assets/css/header.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/golbal.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/body.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+   
 <body>
     <header>
-        <div class="skodaLogo">
+        <div class="skodaLogoContainer">
             <figure class="skodaLogo">
                 <picture>
                     <img srcset="
@@ -60,11 +63,15 @@
                             <div>工具</div>
                         </a>
                     </li>
-                    <li>
-                        <a href=""><img alt="" src="https://az749841.vo.msecnd.net/modulesassets/sfv4/Assets.img.icons.svg.search_icon.24aa9bb609a05719174de5d1785e2a97.svg"></a>
+                    <li class="deskSearch">
+                        <a href="javascript:;"><img alt="" src="https://az749841.vo.msecnd.net/modulesassets/sfv4/Assets.img.icons.svg.search_icon.24aa9bb609a05719174de5d1785e2a97.svg"></a>
                     </li>
                 </ul>
             </nav>
+            <div class="searchContainer hidden">
+                <input class="searchInput" type="text" placeholder="我要搜尋…">
+                <i class="iconClose far fa-times-circle fa-2x"></i>
+            </div>
         </div>
 
         <div class="mobile">
@@ -79,7 +86,7 @@
             <div class="mobileMenuList">
                 <div class="searchContainer">
                     <input type="text" placeholder="我要搜尋…">
-                    <div class="iconSearch">O</div>
+                    <i class="iconSearch fab fa-sistrix fa-2x"></i>
                 </div>
                 <ul>
                     <li>
@@ -106,17 +113,34 @@
             </div>
         </div>
     </header>
-    
+
+    <content>
+        <section>
+            <div class="bannerContainer">
+                <div class="imageGradient"></div>
+                <div class="bannerContent">
+                    <h1 class="indexTitleFallback">新大SUPERB</h1>
+                    <h2 class="indexIntroFallback">歐洲超級房車</h2>
+                    <div class="customizationButton">
+                        SUPERB車型頁面
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <div class="catalogContainer">
+                <h2 class="title">目錄</h2>
+                <div class="customizationButton">
+                    所有車款
+                </div>
+            </div>
+        </section>
+    </content>
+
+    <div class="overlay hidden"></div>
+    <script src="./assets/js/index.js"></script>
 </body>
-<script>
-    let mobileMenuList = document.querySelector(".mobileMenuList"),flag = false;
-    document
-        .querySelector(".iconHamburger")
-        .addEventListener("click", ()=>{
-            flag = mobileMenuList.classList.contains("active")
-            mobileMenuList.classList[flag ? "remove" : "add"]("active");
-            mobileMenuList.classList[flag ? "add" : "remove"]("remove");
-        })
-</script>
+
 </html>
 

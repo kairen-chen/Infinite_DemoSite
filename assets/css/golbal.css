@@ -1,0 +1,55 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    outline: none;
+}
+
+li{
+    list-style: none;
+}
+
+input{
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid #4ba82e;
+    z-index: 0;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+body{
+    font-size: 10px;
+}
+
+
+.overlay{
+    width: 100%;
+    height: calc(100vh);
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    opacity: .5;
+    z-index: -1;
+}
+
+
+h1{
+    font-size: 5em;
+}
+
+.customizationButton{
+    background-color: #4ba82e;
+    border-color: #4ba82e;
+    font-weight: 800;
+    padding: 13px 25px;
+    font-size: 1.6em;
+    width: fit-content;
+    color: white;
+    border-radius: 3px;
+}

@@ -1,0 +1,228 @@
+
+header{
+    height: 70px;
+    position:relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    border-bottom: 1px solid #ddd;
+}
+
+header,
+.skodaLogoContainer
+{
+    background-color: white;
+}
+
+.skodaLogoContainer {
+    padding: 0 20px;
+    /* position: relative; 
+    left: 10px; */
+}
+
+.desk{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    flex:1;
+}
+
+header nav ul,
+header nav ul li{
+    display: flex;
+    align-items: center;
+}
+
+
+.deskLeftSectionNav ul li{
+    padding: 22px 15px;
+    font-size: 1.6em;
+}
+
+.deskLeftSectionNav ul li:nth-child(2) div{
+    width: 10px;
+    height: 10px;
+    position: relative;
+    right: -20px;
+    border-top: 2px solid #4ba82e;
+    border-right: 2px solid #4ba82e;
+    transform: rotate(135deg);
+}
+
+.skodaLogo,
+.desk,
+.deskRightSectionNav,
+.deskRightSectionNav ul,
+.deskRightSectionNav ul li,
+.searchContainer
+{
+    height: 100%;
+}
+
+.searchContainer{
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-left: 1px solid #ddd;
+}
+
+.searchContainer .iconClose{
+    position: absolute;
+    right: 15px;
+}
+
+.searchInput{
+    height: 72%;
+    width: 400px;
+    padding: 1px 15px;
+    cursor: pointer;
+}
+
+.deskRightSectionNav li{
+    margin: 0 10px;
+}
+.deskRightSectionNav li a{
+    display: flex;
+}
+.deskRightSectionNav li a div{
+    margin: 5px 0 0;
+}
+.deskRightSectionNav li:nth-child(n+4){
+    border-left: 1px solid #ddd;
+    cursor: pointer;
+    margin: 0;
+    padding: 0 15px;
+}
+.deskRightSectionNav li:nth-child(5){
+    padding: 0 25px;
+}
+.deskRightSectionNav li img{
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+}
+.deskRightSectionNav li:nth-child(n+4) img{
+    width: 24px;
+}
+.deskRightSectionNav li:nth-child(5) img{
+    margin-right: 0;
+}
+
+.show{
+    opacity: 1;
+    transition: opacity 0.8s;
+}
+
+.hidden{
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.8s;
+}
+
+@media (min-width: 945px){
+    .mobile{
+        display: none;
+    }
+    
+}
+
+@media (max-width: 945px){
+    header{
+        height: 50px;
+    }
+    .desk
+    {
+        display: none;
+    }
+
+    .mobile,
+    .mobileRightSectionNav
+    {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        height: 100%;
+        background-color: white;
+    }
+
+    .mobile{
+        width: 100%;
+    }
+
+
+    .mobileRightSectionNav a{
+        margin-right: 10px;
+    }
+    
+    .iconHamburger{
+        width: 50px;
+        height: 100%;
+        border-left: 1px solid #ddd;
+        padding-top: 14px;
+    }
+
+    .hamburgerMenuStripe{
+        width: 40%;
+        height: 2px;
+        margin: 3px auto;
+        background: #4ba82e;
+    }
+
+    .mobileMenuList{
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 10px 0;
+        transform: translateY(-100%);
+        background-color: white;
+        z-index: -1;
+    }
+
+    .mobileMenuList.active{
+        transform: translateY(50px);
+        transition: transform 0.8s;
+    }
+
+    .mobileMenuList.remove{
+        transform: translateY(-100%);
+        transition: transform 1s;
+    }
+
+    .searchContainer{
+        position: relative;
+        padding: 0 10px;
+    }
+    .searchContainer input{
+        height: 50px;
+        padding: 10px;
+    }
+
+    .iconSearch{
+        position: absolute;
+        right: 23px;
+        top: 15px;
+    }
+
+    .mobileMenuList ul li{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.4em;
+        padding: 21px 21px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .mobileMenuList ul li div{
+        width: 10px;
+        height: 10px;
+        border-top: 2px solid #4ba82e;
+        border-right: 2px solid #4ba82e;
+        transform: rotate(45deg);
+    }
+
+}
