@@ -1,9 +1,10 @@
+
+
 .bannerContainer{
     width: 100%;
     min-height: 300px;
     position: relative;
     padding-bottom: 49%;
-    border: 1px solid red;
     background-size: cover;
     background-position: center center;
     background-image: url('https://az749841.vo.msecnd.net/siteszhtw/alv1/9e886c26-a38f-4170-9aa4-db9d69571eec/headbanner20201117.86f0c09b118da20e3f62ae11d6f5108c.fill-1920x500.jpg');
@@ -21,7 +22,7 @@
 .bannerContent{
     position: absolute;
     left: 0;
-    bottom: 40px;
+    top:366px;
     padding: 0 40px;
     color: #fff;
     width: 100%;
@@ -33,7 +34,7 @@
     padding-top: 6px;
     margin-bottom: 6px;
     max-height: 148px;
-    width: 500px;
+    width: 100%;
 }
 
 .indexIntroFallback{
@@ -52,15 +53,53 @@
     margin: 10px 0 60px 0;
 }
 
+.allCarType{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 80px;
+}
+
+
+.allCarType > div{
+    width: calc(100% / 4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+.allCarType > div > span{
+    font-size: 2.4em;
+    overflow: hidden;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
 @media (min-width: 945px){
     .bannerContainer{
-        padding-bottom: 0;
         height: 500px;
+        padding-bottom: 0;
     }
 }
 
 @media (max-width: 945px){
-    .bannerContainer{
-       
+    .bannerContent{
+        position: relative;
+        top: 0;
+        color: #000;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-bottom: 1px solid #ddd;
+        padding: 40px 0 80px;
     }
+    .allCarType{
+        padding: 0 15%;
+    }
+    .allCarType > div{
+        flex-basis: calc(100% / 2);
+    }
+
 }
