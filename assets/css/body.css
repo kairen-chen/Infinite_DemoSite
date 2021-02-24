@@ -141,7 +141,7 @@
 .backgroundOption .imageGradient{
     width: calc(100% - 4px);
     height: 35%;
-    left: 1px;
+    left: 2px;
 }
 
 .blank{
