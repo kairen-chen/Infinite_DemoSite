@@ -90,36 +90,33 @@
 
 
 /* hometile */
-.hometileContainer{
-    width: 100%;
-}
 .hometileContainer .desk{
     display: flex;
 }
+.hometileContainer{
+    margin-top: 80px;
+    width: 100%;
+}
 
-.left{
+.left,.right{
     padding: 0 ;
     margin: 0 ;
 }
 
-.left,.right{
-    padding: 2px;
+.left{
+    flex-basis: 66.666666667%;
 }
 
-.hometileContainer .desk .flex2{
-    flex:2;
+.right{
+    flex-basis: 33.333333343%;
 }
 
 .hometileContainer .desk .flex1{
-    flex:1;
+    flex-basis: calc(100% / 2);
 }
 
-.column{
-    display: flex;
-    flex-direction: column;
-}
 .row{
-    display: flex;;
+    display: flex;
 }
 
 .square{
@@ -127,17 +124,31 @@
 }
 
 .horizontal{
-    padding-bottom: 40%;
+    padding-bottom: 39.6%;
 }
 
 .vertical{
-    padding-bottom: 160%;
+    padding-bottom: 161%;
 }
 
 .backgroundOption{
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+.blank{
+    position: relative;
+    padding: 2px;
+}
+
+.blank span{
+    position: absolute;
+    left: 20px;
+    bottom: 15px;
+    font-size: 2em;
+    font-weight: 900;
+    color: #fff;
 }
 
 @media (min-width: 945px){
@@ -171,6 +182,9 @@
     }
     .allCarType > div > span{
         font-size: 2.0em;
+    }
+    .hometileContainer .desk{
+        flex-direction: column;
     }
     
 }
