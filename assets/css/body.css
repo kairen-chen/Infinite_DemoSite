@@ -137,6 +137,11 @@
     background-repeat: no-repeat;
 }
 
+
+.backgroundOption .imageGradient{
+    height: 35%;
+}
+
 .blank{
     position: relative;
     padding: 2px;
@@ -149,6 +154,18 @@
     font-size: 2em;
     font-weight: 900;
     color: #fff;
+    z-index: 1;
+}
+
+.blank:hover{
+    position: relative;
+    transform: scale(1.1);
+    transition: all .3s;
+    z-index: 1;
+}
+
+.blank:hover .backgroundOption{
+    box-shadow:3px 3px 5px 3px #ddd;
 }
 
 @media (min-width: 945px){
