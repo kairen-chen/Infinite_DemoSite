@@ -1,5 +1,3 @@
-
-
 .bannerContainer{
     width: 100%;
     min-height: 300px;
@@ -39,20 +37,24 @@
 
 .indexIntroFallback{
     font-size: 1.8em;
-    margin-bottom: 12px;
+    margin-bottom: 25px;
 }
 
+/* catalog */
 .catalogContainer{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 40px 0 60px 0;
+    width: 70%;
+    margin: auto;
 }
 .catalogContainer .title{
     margin: 10px 0 60px 0;
 }
 
+/* allCarType */
 .allCarType{
     display: flex;
     flex-wrap: wrap;
@@ -69,11 +71,73 @@
     margin: 20px 0;
 }
 
+.allCarType > div > figure{
+    transition: transform .5s;
+    transform: scale(1);
+}
+
+.allCarType > div > figure:hover{
+    transition: transform 1s;
+    transform: scale(1.1);
+}
+
 .allCarType > div > span{
     font-size: 2.4em;
     overflow: hidden;
     text-transform: uppercase;
     font-weight: 900;
+}
+
+
+/* hometile */
+.hometileContainer{
+    width: 100%;
+}
+.hometileContainer .desk{
+    display: flex;
+}
+
+.left{
+    padding: 0 ;
+    margin: 0 ;
+}
+
+.left,.right{
+    padding: 2px;
+}
+
+.hometileContainer .desk .flex2{
+    flex:2;
+}
+
+.hometileContainer .desk .flex1{
+    flex:1;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+}
+.row{
+    display: flex;;
+}
+
+.square{
+    padding-bottom: 79.7%;
+}
+
+.horizontal{
+    padding-bottom: 40%;
+}
+
+.vertical{
+    padding-bottom: 160%;
+}
+
+.backgroundOption{
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 @media (min-width: 945px){
@@ -94,6 +158,9 @@
         align-items: center;
         border-bottom: 1px solid #ddd;
         padding: 40px 0 80px;
+    }
+    .catalogContainer{
+        width: auto;
     }
     .allCarType{
         padding: 0 5%;

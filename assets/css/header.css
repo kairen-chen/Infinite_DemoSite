@@ -17,14 +17,13 @@ header,
 
 .skodaLogoContainer {
     padding: 0 20px;
-    /* position: relative; 
-    left: 10px; */
+    display: flex;
+    align-items: center;
 }
 
 .desk{
     display: flex;
     justify-content:space-between;
-    align-items: center;
     flex:1;
 }
 
@@ -50,7 +49,7 @@ header nav ul li{
     transform: rotate(135deg);
 }
 
-.skodaLogo,
+.skodaLogoContainer,
 .desk,
 .deskRightSectionNav,
 .deskRightSectionNav ul,
@@ -73,6 +72,7 @@ header nav ul li{
 .searchContainer .iconClose{
     position: absolute;
     right: 15px;
+    top: 25px;
 }
 
 .searchInput{
@@ -80,6 +80,11 @@ header nav ul li{
     width: 400px;
     padding: 1px 15px;
     cursor: pointer;
+}
+
+.deskRightSectionNav {
+    position: absolute;
+    right: 0;
 }
 
 .deskRightSectionNav li{
@@ -156,6 +161,7 @@ header nav ul li{
 
     .mobileRightSectionNav a{
         margin-right: 10px;
+        font-size: 1.4em;
     }
     
     .iconHamburger{
