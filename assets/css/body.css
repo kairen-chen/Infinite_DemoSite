@@ -187,9 +187,9 @@ content{
 }
 
 .newsContainer{
+    width: 100%;
     text-align: center;
     margin: 60px 0;
-    width: 100%;
 }
 .newsContainer .content{
     display: flex;
@@ -246,7 +246,7 @@ content{
 }
 
 .allNews{
-    margin-top: 60px;
+    margin-bottom: 40px;
 }
 
 
