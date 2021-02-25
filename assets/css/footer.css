@@ -1,0 +1,146 @@
+footer{
+    position: relative;
+}
+.itemContainer{
+    width: 100%;
+    background-color: #f0f0f0;
+    display: flex;
+    padding: 20px 10%;
+    position: relative;
+}
+
+footer .item{
+    flex:1;
+    position: relative;
+}
+
+footer .item .title{
+    font-weight: 800;
+    font-size: 1.4em;
+    width: 100%;
+    margin: 0 0 5px 0;
+}
+
+footer .item .context{
+    font-size: 1.4em;
+    line-height: 2em;
+}
+
+.aboutUsContainer{
+    padding: 20px 10%;
+    background-color: #000;
+}
+
+.aboutUs{
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.aboutUs .item{
+    display: flex;
+    align-items: center;
+}
+
+.aboutUs .childItem{
+    margin-left: 30px;
+}
+
+.connection{
+    position: absolute;
+    left: 23.5%;
+    bottom: 17%;
+}
+
+
+footer .connection .title{
+    margin-bottom: 20px;
+}
+
+.connection .customizationButton{
+    font-size: 1rem;
+}
+
+
+.hr{
+    border-bottom: 1px solid #787878;
+    padding-top: 40px;
+    margin-bottom: 30px;
+}
+
+.aboutUs .note{
+    flex-basis: 100%;
+    padding: 40px 0;
+}
+
+.mobileConnection,
+.mobileWatchMore
+{
+    display: none;
+}
+
+
+@media (max-width: 945px){
+    footer.mobile{
+        flex-direction: column;
+    }
+    footer .mobileWatchMore{
+        display: flex;
+        width: 100%;
+        padding: 20px;
+        background-color: #f0f0f0;
+        border-top: 1px solid #000;
+        position: relative;
+    }
+
+    .mobileWatchMore .iconAngle{
+        position: absolute;
+        right: 15px;
+    } 
+
+    .iconAngle.up{
+        display: none;
+        top:18px;
+    }
+
+    
+    
+    .itemContainer{
+        display: none;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .itemContainer .item:not(:first-child) .title{
+        margin-top: 20px;
+    }
+
+    .itemContainer .context{
+        padding-left: 20px;
+    }
+
+    .mobileConnection{
+        display: block;
+        text-align: center;
+        padding-bottom: 20px;
+    }
+
+    .mobileConnection .title{
+        font-weight: 800;
+        color: #4ba82e;
+        font-size: 1.4em;
+        padding: 20px 0;
+    }
+
+    .displayShow{
+        display: block!important;
+    }
+    
+    .displayHidden,
+    .connection
+    {
+        display: none!important;
+    }
+
+}

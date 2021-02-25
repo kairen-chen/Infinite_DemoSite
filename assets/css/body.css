@@ -1,5 +1,19 @@
+content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0 60px 0;
+    margin: auto;
+}
+
 .bannerContainer{
     width: 100%;
+    position: relative;        
+}
+
+.mainBanner{
     min-height: 300px;
     position: relative;
     padding-bottom: 49%;
@@ -19,20 +33,18 @@
 
 .bannerContent{
     position: absolute;
-    left: 0;
-    top:366px;
-    padding: 0 40px;
+    left: 38px;
+    bottom: 52px;
     color: #fff;
-    width: 100%;
 }
 
 .indexTitleFallback{
+    width: 100%;
     font-weight: 2em;
     text-transform: uppercase;
     padding-top: 6px;
     margin-bottom: 6px;
     max-height: 148px;
-    width: 100%;
 }
 
 .indexIntroFallback{
@@ -40,58 +52,61 @@
     margin-bottom: 25px;
 }
 
+.informationContainer{
+    width: 70%;
+}
+
+
 /* catalog */
 .catalogContainer{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding: 40px 0 60px 0;
-    width: 70%;
-    margin: auto;
+    flex-direction: column;
+    margin:60px 0;
 }
+
 .catalogContainer .title{
-    margin: 10px 0 60px 0;
+    margin-bottom:60px;
 }
+
 
 /* allCarType */
-.allCarType{
+.allCarTypeContainer{
+    width:100%;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 80px;
+    margin: 60px 0;
 }
 
 
-.allCarType > div{
-    width: calc(100% / 4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.allCarTypeContainer > div{
+    width: calc(100% / 4 - 1px);
+    text-align: center;
     margin: 20px 0;
 }
 
-.allCarType > div > figure{
+.allCarTypeContainer > div > figure{
     transition: transform .5s;
     transform: scale(1);
 }
 
-.allCarType > div > figure:hover{
+.allCarTypeContainer > div > figure:hover{
     transition: transform 1s;
     transform: scale(1.1);
+    cursor: pointer;
 }
 
-.allCarType > div > span{
+.allCarTypeContainer > div > span{
     font-size: 2.4em;
     overflow: hidden;
     text-transform: uppercase;
     font-weight: 900;
 }
 
-
 /* hometile */
 .hometileContainer .desk{
     display: flex;
+    position: relative;
 }
 .hometileContainer{
     margin-top: 80px;
@@ -164,59 +179,160 @@
     transform: scale(1.1);
     transition: all .3s;
     z-index: 1;
+    cursor: pointer;
 }
 
 .blank:hover .backgroundOption{
     box-shadow:3px 3px 5px 3px #ddd;
 }
 
+.newsContainer{
+    text-align: center;
+    margin: 60px 0;
+    width: 100%;
+}
+.newsContainer .content{
+    display: flex;
+    margin: 30px 0 0;
+    align-items:stretch;
+}
+
+.newsContainer .item{
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-flow: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: 0 10px 35px;
+}
+
+.newsContainer .item h2{
+    width: 100%;
+    margin: 15px 0 8px 0;
+    line-height: 26px;
+}
+
+
+
+.newsContainer .item .context {
+    width: 100%;
+    font-size: 1.4em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.newsContainer .readMore{
+    display: flex;
+    margin: 15px 0 0;
+    position: absolute;
+    bottom: 0px;
+}
+
+.newsContainer .readMore > div,
+.readMore .iconReedMore
+{
+    color: #4ba82e;
+    font-weight: 800;
+    font-size: 1.4em;
+}
+
+.readMore .iconReedMore{
+    margin-left: 10px;
+    font-size: 1.8em;
+}
+
+.allNews{
+    margin-top: 60px;
+}
+
+
+
+
+
+
 @media (min-width: 945px){
-    .bannerContainer{
+    .mainBanner{
         height: 500px;
         padding-bottom: 0;
     }
 }
 
 @media (max-width: 945px){
+    content{
+        padding-bottom: 0;
+    }
+    .informationContainer{
+        width: 100%;
+    }
     .bannerContent{
+        width: 100%;
         position: relative;
         top: 0;
+        left: 0;
         color: #000;
         text-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         border-bottom: 1px solid #ddd;
-        padding: 40px 0 80px;
+        padding: 60px 0;
     }
-    .catalogContainer{
-        width: auto;
-    }
-    .allCarType{
+    .allCarTypeContainer{
         padding: 0 5%;
     }
-    .allCarType > div{
-        flex-basis: calc((100% / 2) - 40px);
+    .allCarTypeContainer > div{
+        flex-basis: calc((99% / 2) - 40px);
         margin: 0 20px;
     }
-    .allCarType > div > span{
+    .allCarTypeContainer > div > span{
         font-size: 2.0em;
     }
     .hometileContainer .desk{
+        display: block;
         flex-direction: column;
     }
+    .blank:hover{
+        transform: scale(1);
+    }
+
+    .newsContainer .content{
+        display: block;
+    }
+
+    .newsContainer .item:not(:last-child){
+        border-bottom: 1px solid #ddd;
+    }
+
+    .newsContainer .content h2{
+        font-weight: unset;
+        font-size: 2.4em;
+        padding: 0 10px;
+    }
+
+    .newsContainer .item img,
+    .newsContainer .readMore
+    {
+        display: none;
+    }
+    
+    
     
 }
 
 @media (max-width: 678px){
-    .allCarType{
+    .allCarTypeContainer{
         padding: 0 ;
     }
-    .allCarType > div{
-        flex-basis: calc((100% / 2) - 20px);
+    .allCarTypeContainer > div{
+        flex-basis: calc((99% / 2) - 20px);
         margin: 0 10px;
     }
-    .allCarType > div > span{
+    .allCarTypeContainer > div > span{
         font-size: 1.8em;
     }
 }

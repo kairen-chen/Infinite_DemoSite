@@ -21,7 +21,7 @@ header,
     align-items: center;
 }
 
-.desk{
+header .desk{
     display: flex;
     justify-content:space-between;
     flex:1;
@@ -79,12 +79,12 @@ header nav ul li{
     height: 72%;
     width: 400px;
     padding: 1px 15px;
-    cursor: pointer;
 }
 
 .deskRightSectionNav {
     position: absolute;
     right: 0;
+    font-size: 1.4em;
 }
 
 .deskRightSectionNav li{
@@ -117,19 +117,9 @@ header nav ul li{
     margin-right: 0;
 }
 
-.show{
-    opacity: 1;
-    transition: opacity 0.8s;
-}
-
-.hidden{
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.8s;
-}
 
 @media (min-width: 945px){
-    .mobile{
+    header .mobile{
         display: none;
     }
     
@@ -139,7 +129,8 @@ header nav ul li{
     header{
         height: 50px;
     }
-    .desk
+
+    header .desk
     {
         display: none;
     }
