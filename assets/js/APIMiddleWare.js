@@ -24,7 +24,7 @@ var update_action = function update_action(data, _ref) {
     });
     if (!item) return false;
     item = Object.assign({}, item, _ref);
-    return API.update({ id, item });
+    return API.update({ id:id, item:item });
 };
 
 

@@ -2,9 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" contentType="application/x-www-form-urlencoded" charset=UTF-8/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CRUD</title>
+
+    <style>
+      body{
+        text-align: center;
+      }
+      #itemContainer{
+        text-align: center;
+        border: 2px solid forestgreen;
+        margin: 20px 0;
+        background: linear-gradient(to right, rgb(0, 132, 255), yellow) no-repeat fixed;
+      }
+      #itemContainer > div{
+        margin: 20px 0;
+      }
+    </style>
 
     <script
       src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -15,22 +30,31 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.12.1/polyfill.min.js"
       crossorigin="anonymous"
     ></script>
-
-    <script src="../assets/js/APIMiddleWare.js"></script>
-    <script src="../assets/js/API.js"></script>
+    
   </head>
 
   <body>
-    <div id="itemContainer"></div>
+    <h1>CRUD Demo</h1>
     <div id="createContainer">
-      <input type="text" class="inputTitle" placeholder="title" />
-      <input type="text" class="inputAuthor" placeholder="author" />
+      Create Data =>
+      <input type="text" class="inputTitle" placeholder="title" value = "hello"/>
+      <input type="text" class="inputAuthor" placeholder="author" value = "kairen" />
       <button onClick="createHandle()">Create data</button>
     </div>
 
+    <div id="itemContainer"></div>
+
+    <script src="../assets/js/APIMiddleWare.js"></script>
+    <script src="../assets/js/API.js"></script>
     <script>
       "use strict";
 
+      if (typeof jQuery == 'undefined') {
+      // jQuery 未載入
+      } else {
+      // jQuery 已載入
+      }
+      
       (function () {
         readHandle();
       })();
@@ -43,24 +67,26 @@
           author: $(".inputAuthor").val(),
         }).done(function (res) {
           readHandle();
-          $(".inputTitle").val(null);
-          $(".inputAuthor").val(null)
+          var randomNumber = Math.floor(Math.random() * Math.floor(100));
+          $(".inputTitle").val("hello_" + randomNumber);
+          $(".inputAuthor").val("Kairen_" + randomNumber);
         });
       }
 
       function readHandle() {
         read_action().done(function (res) {
+          console.log("read:", res);
           data = res;
           context = "";
           $.each(data, function (key, item) {
-            context += `
-            <div id=${item.id}>
-                <div>編號: ${item.id}  => </div>
-                <input type="text" class="title" value=${item.title}>
-                <input type="text" class="author" value=${item.author}>
-                <button onClick="updateHandle(${item.id})">Update</button>
-                <button onClick="deleteHandle(${item.id})">Delete</button>
-                </div>`;
+            context += 
+              "<div id=" + item.id +">" +
+                "<span>ID : " + item.id + "=> </span>" +
+                "<input type='text' class='title' value=" + item.title + ">" +
+                "<input type='text' class='author' value=" + item.author + ">" +
+                "<button onClick=updateHandle(" + item.id + ")>Update</button>" +
+                "<button onClick=deleteHandle(" + item.id + ")>Delete</button>" +
+              "</div>"
           });
           $("#itemContainer").html("").html(context);
         });
@@ -68,7 +94,7 @@
 
       function updateHandle(id) {
         update_action(data, {
-          id,
+          id:id,
           title: $("#" + id)
             .find(".title")
             .val(),
@@ -76,6 +102,7 @@
             .find(".author")
             .val(),
         }).done(function (res) {
+          alert("success!")
           console.log("update success,result => ", res);
         });
       }

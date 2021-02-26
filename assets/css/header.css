@@ -116,18 +116,17 @@ header nav ul li{
 .deskRightSectionNav li:nth-child(5) img{
     margin-right: 0;
 }
-
-
-@media (min-width: 945px){
-    header .mobile{
-        display: none;
-    }
-    
+header .mobile{
+    display: none;
 }
 
 @media (max-width: 945px){
     header{
         height: 50px;
+    }
+
+    header .mobile{
+        display: flex;
     }
 
     header .desk
