@@ -1,22 +1,30 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
   <head>
+
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" contentType="application/x-www-form-urlencoded" charset=UTF-8/>
+    <meta
+      http-equiv="X-UA-Compatible"
+      contentType="application/x-www-form-urlencoded"
+      charset="UTF-8"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CRUD</title>
 
     <style>
-      body{
+      body {
         text-align: center;
       }
-      #itemContainer{
+      #itemContainer {
         text-align: center;
         border: 2px solid forestgreen;
         margin: 20px 0;
-        background: linear-gradient(to right, rgb(0, 132, 255), yellow) no-repeat fixed;
+        background: linear-gradient(to right, rgb(0, 132, 255), yellow)
+          no-repeat fixed;
       }
-      #itemContainer > div{
+      #itemContainer > div {
         margin: 20px 0;
       }
     </style>
@@ -30,15 +38,21 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.12.1/polyfill.min.js"
       crossorigin="anonymous"
     ></script>
-    
+
   </head>
 
   <body>
+
     <h1>CRUD Demo</h1>
     <div id="createContainer">
       Create Data =>
-      <input type="text" class="inputTitle" placeholder="title" value = "hello"/>
-      <input type="text" class="inputAuthor" placeholder="author" value = "kairen" />
+      <input type="text" class="inputTitle" placeholder="title" value="hello" />
+      <input
+        type="text"
+        class="inputAuthor"
+        placeholder="author"
+        value="kairen"
+      />
       <button onClick="createHandle()">Create data</button>
     </div>
 
@@ -49,12 +63,12 @@
     <script>
       "use strict";
 
-      if (typeof jQuery == 'undefined') {
-      // jQuery 未載入
+      if (typeof jQuery == "undefined") {
+        // jQuery 未載入
       } else {
-      // jQuery 已載入
+        // jQuery 已載入
       }
-      
+
       (function () {
         readHandle();
       })();
@@ -79,14 +93,26 @@
           data = res;
           context = "";
           $.each(data, function (key, item) {
-            context += 
-              "<div id=" + item.id +">" +
-                "<span>ID : " + item.id + "=> </span>" +
-                "<input type='text' class='title' value=" + item.title + ">" +
-                "<input type='text' class='author' value=" + item.author + ">" +
-                "<button onClick=updateHandle(" + item.id + ")>Update</button>" +
-                "<button onClick=deleteHandle(" + item.id + ")>Delete</button>" +
-              "</div>"
+            context +=
+              "<div id=" +
+              item.id +
+              ">" +
+              "<span>ID : " +
+              item.id +
+              "=> </span>" +
+              "<input type='text' class='title' value=" +
+              item.title +
+              ">" +
+              "<input type='text' class='author' value=" +
+              item.author +
+              ">" +
+              "<button onClick=updateHandle(" +
+              item.id +
+              ")>Update</button>" +
+              "<button onClick=deleteHandle(" +
+              item.id +
+              ")>Delete</button>" +
+              "</div>";
           });
           $("#itemContainer").html("").html(context);
         });
@@ -94,7 +120,7 @@
 
       function updateHandle(id) {
         update_action(data, {
-          id:id,
+          id: id,
           title: $("#" + id)
             .find(".title")
             .val(),
@@ -102,7 +128,7 @@
             .find(".author")
             .val(),
         }).done(function (res) {
-          alert("success!")
+          alert("success!");
           console.log("update success,result => ", res);
         });
       }
@@ -140,5 +166,7 @@
 
       // })()
     </script>
+
   </body>
+  
 </html>

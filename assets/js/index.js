@@ -17,10 +17,12 @@
 
     //mobile漢堡鈕
     iconHamburger.addEventListener("click", function(){
+
         hamburgerIsOpen = mobileMenuList.classList.contains("active");
         mobileMenuList.classList[hamburgerIsOpen ? "remove" : "add"]("active");
         mobileMenuList.classList[hamburgerIsOpen ? "add" : "remove"]("remove");
         overlay.classList[hamburgerIsOpen ? "remove" : "add"]("overlayShow");
+        
     });
     
     function deskRightSectionNavToggle(flag){
@@ -40,16 +42,17 @@
     });
 
     // overlay click
-    overlay.addEventListener("click",function(){
+    overlay.addEventListener("click", function(){
         if(mobileMenuList.classList.contains("active"))
             iconHamburger.click();
     })
 
     // Mobile footer 了解更多
-    deskSemobileWatchMorearch.addEventListener("click",function(){
-        footerItemContainer.classList[footerItemContainer.classList.contains("displayShow") ? "remove" : "add" ]("displayShow");
-        iconAngleUp.classList[footerItemContainer.classList.contains("displayShow") ? "add" : "remove" ]("displayShow");
-        iconAngleDown.classList[footerItemContainer.classList.contains("displayShow") ? "add" : "remove" ]("displayHidden");
+    deskSemobileWatchMorearch.addEventListener("click", function(){
+        var footerItemContainerfFlag = footerItemContainer.classList.contains("displayShow");
+        footerItemContainer.classList[footerItemContainerfFlag ? "remove" : "add" ]("displayShow");
+        iconAngleUp.classList[footerItemContainerfFlag ? "add" : "remove" ]("displayShow");
+        iconAngleDown.classList[footerItemContainerfFlag ? "add" : "remove" ]("displayHidden");
     })
 
     window.addEventListener("resize", function () {
@@ -57,6 +60,7 @@
         overlay.classList.remove("overlayShow");
         iconClose.click();
     });
+
 })();
 
 var direction = function direction() {

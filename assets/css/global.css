@@ -1,108 +1,102 @@
-*{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    outline: none;
+* {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: none;
 }
 
-
-body{
-    font-size: 10px;
-    position: relative;
+body {
+  font-size: 10px;
+  position: relative;
 }
 
-
-li{
-    list-style: none;
+li {
+  list-style: none;
 }
 
-input{
-    width: 100%;
-    border-radius: 3px;
-    border: 1px solid #4ba82e;
-    z-index: 0;
+input {
+  width: 100%;
+  border-radius: 3px;
+  z-index: 0;
+  border: 1px solid #4ba82e;
 }
 
 input::-ms-clear {
-    display: none;
-    height: 0;
-    width: 0;
+  display: none;
+  height: 0;
+  width: 0;
 }
 
-a{
-    text-decoration: none;
-    color: #000;
+a {
+  text-decoration: none;
+  color: #000;
 }
 
-img{
-    width: 100%;
-    max-width: 100%;
+img {
+  width: 100%;
+  max-width: 100%;
 }
 
-
-h1{
-    font-size: 3.6em;
+h1 {
+  font-size: 3.6em;
 }
 
-h2{
-    font-size: 2.6em;
+h2 {
+  font-size: 2.6em;
 }
 
-i{
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+i {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
-
-.overlay{
-    width: 100%;
-    height: 100%;
-    display: none;
-    min-height: calc(100vh);
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: black;
-    opacity: .5;
+.overlay {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+  background-color: black;
 }
 
-.show{
-    opacity: 1;
-    transition: opacity 0.8s;
+.show {
+  opacity: 1;
+  transition: opacity 0.8s;
 }
 
-.hidden{
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.8s;
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.8s;
 }
 
-.overlayShow{
-    display: block;
+.overlayShow {
+  display: block;
 }
 
 .customizationButton,
-.customizationButtonWhite
-{
-    font-weight: 800;
-    padding: 13px 25px;
-    font-size: 1.6em;
-    width: fit-content;
-    border-radius: 3px;
-    cursor: pointer;
-    display: block;
+.customizationButtonWhite {
+  width: fit-content;
+  display: block;
+  font-weight: 800;
+  padding: 13px 25px;
+  font-size: 1.6em;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
-.customizationButton{
-    background-color: #4ba82e;
-    border-color: #4ba82e;
-    color: white;
+.customizationButton {
+  background-color: #4ba82e;
+  border-color: #4ba82e;
+  color: white;
 }
 
-.customizationButtonWhite{
-    color: #000;
-    border: 1px solid #000;
+.customizationButtonWhite {
+  color: #000;
+  border: 1px solid #000;
 }
-

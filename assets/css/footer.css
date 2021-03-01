@@ -1,148 +1,140 @@
-footer{
-    position: relative;
+footer {
+  position: relative;
 }
-.itemContainer{
-    width: 100%;
-    background-color: #f0f0f0;
-    display: flex;
-    padding: 20px 10%;
-    padding-bottom: 60px;
-    position: relative;
-}
-
-footer .item{
-    flex:1;
-    position: relative;
+.itemContainer {
+  width: 100%;
+  display: flex;
+  position: relative;
+  padding: 20px 10%;
+  padding-bottom: 60px;
+  background-color: #f0f0f0;
 }
 
-footer .item .title{
-    font-weight: 800;
-    font-size: 1.4em;
-    width: 100%;
-    margin: 0 0 5px 0;
+footer .item {
+  position: relative;
+  flex: 1;
 }
 
-footer .item .context{
-    font-size: 1.4em;
-    line-height: 2em;
+footer .item .title {
+  width: 100%;
+  font-weight: 800;
+  font-size: 1.4em;
+  margin: 0 0 5px 0;
 }
 
-.aboutUsContainer{
-    padding: 20px 10%;
-    background-color: #000;
+footer .item .context {
+  font-size: 1.4em;
+  line-height: 2em;
 }
 
-.aboutUs{
-    display: flex;
-    color: white;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    text-transform: uppercase
+.aboutUsContainer {
+  padding: 20px 10%;
+  background-color: #000;
 }
 
-.aboutUs .item{
-    display: flex;
-    align-items: center;
+.aboutUs {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  text-transform: uppercase;
+  color: white;
 }
 
-.aboutUs .childItem{
-    margin-left: 30px;
+.aboutUs .item {
+  display: flex;
+  align-items: center;
 }
 
-.connection{
-    position: absolute;
-    left: 23.5%;
-    bottom: 11%;
+.aboutUs .childItem {
+  margin-left: 30px;
 }
 
-
-footer .connection .title{
-    margin-bottom: 20px;
+.connection {
+  position: absolute;
+  left: 23.5%;
+  bottom: 11%;
 }
 
-.connection .customizationButton{
-    font-size: 1rem;
+footer .connection .title {
+  margin-bottom: 20px;
 }
 
-
-.hr{
-    border-bottom: 1px solid #787878;
-    padding-top: 40px;
-    margin-bottom: 30px;
+.connection .customizationButton {
+  font-size: 1rem;
 }
 
-.aboutUs .note{
-    flex-basis: 100%;
-    padding: 40px 0;
+.hr {
+  padding-top: 40px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #787878;
+}
+
+.aboutUs .note {
+  flex-basis: 100%;
+  padding: 40px 0;
 }
 
 .mobileConnection,
-.mobileWatchMore
-{
-    display: none;
+.mobileWatchMore {
+  display: none;
 }
 
+@media (max-width: 945px) {
+  footer.mobile {
+    flex-direction: column;
+  }
+  footer .mobileWatchMore {
+    width: 100%;
+    display: flex;
+    position: relative;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-top: 1px solid #000;
+  }
 
-@media (max-width: 945px){
-    footer.mobile{
-        flex-direction: column;
-    }
-    footer .mobileWatchMore{
-        display: flex;
-        width: 100%;
-        padding: 20px;
-        background-color: #f0f0f0;
-        border-top: 1px solid #000;
-        position: relative;
-    }
+  .mobileWatchMore .iconAngle {
+    position: absolute;
+    right: 15px;
+  }
 
-    .mobileWatchMore .iconAngle{
-        position: absolute;
-        right: 15px;
-    } 
+  .iconAngle.up {
+    display: none;
+    top: 18px;
+  }
 
-    .iconAngle.up{
-        display: none;
-        top:18px;
-    }
+  .itemContainer {
+    display: none;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 
-    
-    
-    .itemContainer{
-        display: none;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
+  .itemContainer .item:not(:first-child) .title {
+    margin-top: 20px;
+  }
 
-    .itemContainer .item:not(:first-child) .title{
-        margin-top: 20px;
-    }
+  .itemContainer .context {
+    padding-left: 20px;
+  }
 
-    .itemContainer .context{
-        padding-left: 20px;
-    }
+  .mobileConnection {
+    display: block;
+    text-align: center;
+    padding-bottom: 20px;
+  }
 
-    .mobileConnection{
-        display: block;
-        text-align: center;
-        padding-bottom: 20px;
-    }
+  .mobileConnection .title {
+    font-size: 1.4em;
+    font-weight: 800;
+    padding: 20px 0;
+    color: #4ba82e;
+  }
 
-    .mobileConnection .title{
-        font-weight: 800;
-        color: #4ba82e;
-        font-size: 1.4em;
-        padding: 20px 0;
-    }
+  .displayShow {
+    display: block !important;
+  }
 
-    .displayShow{
-        display: block!important;
-    }
-    
-    .displayHidden,
-    .connection
-    {
-        display: none!important;
-    }
-
+  .displayHidden,
+  .connection {
+    display: none !important;
+  }
 }
