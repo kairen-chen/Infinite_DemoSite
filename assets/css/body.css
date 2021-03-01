@@ -249,6 +249,7 @@ content {
 @media (max-width: 945px) {
   content {
     padding-bottom: 0;
+    overflow: hidden;
   }
 
   .informationContainer {
@@ -304,10 +305,6 @@ content {
     position: relative;
   }
   
-  content{
-    overflow: hidden;
-  }
-
   .slideBoxContainer{
     height: 100%;
   }
