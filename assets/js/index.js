@@ -45,7 +45,7 @@
     overlay.addEventListener("click", function(){
         if(mobileMenuList.classList.contains("active"))
             iconHamburger.click();
-    })
+    });
 
     // Mobile footer 了解更多
     deskSemobileWatchMorearch.addEventListener("click", function(){
@@ -53,7 +53,22 @@
         footerItemContainer.classList[footerItemContainerfFlag ? "remove" : "add" ]("displayShow");
         iconAngleUp.classList[footerItemContainerfFlag ? "add" : "remove" ]("displayShow");
         iconAngleDown.classList[footerItemContainerfFlag ? "add" : "remove" ]("displayHidden");
-    })
+    });
+
+    // slideBox
+    var slideBox = document.querySelectorAll(".slideBox"),i = 0;
+    setInterval(function(){
+            if(i < slideBox.length-1 ){
+                slideBox[i].classList.remove("active");
+                i++;
+                slideBox[i].classList.add("active");
+            }else{//跑到最後一張掉頭到第一張
+                slideBox[i].classList.remove("active");
+                i = 0;
+                slideBox[i].classList.add("active");
+            }
+    },2000)
+
 
     window.addEventListener("resize", function () {
         mobileMenuList.classList.remove("active");

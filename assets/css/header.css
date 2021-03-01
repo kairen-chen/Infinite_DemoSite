@@ -86,32 +86,40 @@ header nav ul li {
 .deskRightSectionNav li {
   margin: 0 10px;
 }
+
 .deskRightSectionNav li a {
   display: flex;
 }
+
 .deskRightSectionNav li a div {
   margin: 5px 0 0;
 }
+
 .deskRightSectionNav li:nth-child(n + 4) {
   border-left: 1px solid #ddd;
   cursor: pointer;
   margin: 0;
   padding: 0 15px;
 }
+
 .deskRightSectionNav li:nth-child(5) {
   padding: 0 25px;
 }
+
 .deskRightSectionNav li img {
   width: 32px;
   height: 32px;
   margin-right: 10px;
 }
+
 .deskRightSectionNav li:nth-child(n + 4) img {
   width: 24px;
 }
+
 .deskRightSectionNav li:nth-child(5) img {
   margin-right: 0;
 }
+
 header .mobile {
   display: none;
 }
@@ -129,7 +137,7 @@ header .mobile {
     display: none;
   }
 
-  .mobile,
+  header .mobile,
   .mobileRightSectionNav {
     height: 100%;
     display: flex;
@@ -138,7 +146,7 @@ header .mobile {
     background-color: white;
   }
 
-  .mobile {
+  header .mobile {
     width: 100%;
   }
 
@@ -150,14 +158,16 @@ header .mobile {
   .iconHamburger {
     width: 50px;
     height: 100%;
-    padding-top: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     border-left: 1px solid #ddd;
   }
 
   .hamburgerMenuStripe {
     width: 40%;
     height: 2px;
-    margin: 3px auto;
+    margin: 2px auto;
     background: #4ba82e;
   }
 
@@ -186,6 +196,7 @@ header .mobile {
     position: relative;
     padding: 0 10px;
   }
+
   .searchContainer input {
     height: 50px;
     padding: 10px;

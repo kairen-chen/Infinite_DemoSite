@@ -14,9 +14,10 @@ content {
 }
 
 .mainBanner {
+  height: 500px;
+  padding-bottom: 0;
   min-height: 300px;
   position: relative;
-  padding-bottom: 49%;
   background-size: cover;
   background-position: center center;
   background-image: url("https://az749841.vo.msecnd.net/siteszhtw/alv1/9e886c26-a38f-4170-9aa4-db9d69571eec/headbanner20201117.86f0c09b118da20e3f62ae11d6f5108c.fill-1920x500.jpg");
@@ -103,6 +104,11 @@ content {
   display: flex;
   position: relative;
 }
+
+.hometileContainer .mobile{
+  display: none;
+}
+
 .hometileContainer {
   width: 100%;
   margin-top: 80px;
@@ -240,48 +246,80 @@ content {
   margin-bottom: 40px;
 }
 
-@media (min-width: 945px) {
-  .mainBanner {
-    height: 500px;
-    padding-bottom: 0;
-  }
-}
-
 @media (max-width: 945px) {
   content {
     padding-bottom: 0;
   }
+
   .informationContainer {
     width: 100%;
   }
+
   .bannerContent {
     width: 100%;
     position: relative;
     top: 0;
     left: 0;
-    color: #000;
-    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: #000;
+    text-align: center;
     justify-content: center;
     border-bottom: 1px solid #ddd;
     padding: 60px 0;
   }
+
+  .mainBanner {
+    height: unset;
+  }
+
+  .mainBanner .imageGradient{
+    display: none;
+  }
+
   .allCarTypeContainer {
-    padding: 0 5%;
+    padding: 0;
   }
+
   .allCarTypeContainer > div {
-    flex-basis: calc((99% / 2) - 40px);
-    margin: 0 20px;
+    flex-basis: calc((99% / 2) - 20px);
+    margin: 0 10px;
   }
+  
   .allCarTypeContainer > div > span {
-    font-size: 2em;
+    font-size: 1.8em;
   }
+
   .hometileContainer .desk {
     display: block;
     flex-direction: column;
   }
+
+  .hometileContainer .mobile{
+    display: block;
+    position: relative;
+  }
+  
+  .hometileContainer .slideBox{
+    display: fixed;
+    text-align: center;
+    border: 2px solid forestgreen;
+    margin: 20px 0;
+    background: linear-gradient(to right, rgb(0, 132, 255), yellow);
+    transform: translateX(100%);
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+  }
+
+  .hometileContainer .slideBox.active{
+    width: 100%;
+    transform: translateX(0);
+    transition: transform 0.5s
+  }
+
   .blank:hover {
     transform: scale(1);
   }
@@ -306,15 +344,3 @@ content {
   }
 }
 
-@media (max-width: 678px) {
-  .allCarTypeContainer {
-    padding: 0;
-  }
-  .allCarTypeContainer > div {
-    flex-basis: calc((99% / 2) - 20px);
-    margin: 0 10px;
-  }
-  .allCarTypeContainer > div > span {
-    font-size: 1.8em;
-  }
-}
