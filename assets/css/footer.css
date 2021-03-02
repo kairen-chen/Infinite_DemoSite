@@ -10,7 +10,7 @@ footer {
   background-color: #f0f0f0;
 }
 
-footer .item {
+footer .itemContainer .item {
   position: relative;
   flex: 1;
 }
@@ -28,6 +28,7 @@ footer .item .context {
 }
 
 .aboutUsContainer {
+  width:100%;
   padding: 20px 10%;
   background-color: #000;
 }
@@ -80,7 +81,7 @@ footer .connection .title {
 }
 
 @media (max-width: 945px) {
-  footer.mobile {
+  footer{
     display: flex;
     flex-direction: column;
     align-items: center;

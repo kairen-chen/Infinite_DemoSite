@@ -1,5 +1,9 @@
 "use strict";
 
+if (typeof NodeList.prototype.forEach !== 'function')  {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+}
+
 ;(function () {
 
     var mobileMenuList = document.querySelector(".mobileMenuList"),
@@ -56,18 +60,55 @@
     });
 
     // slideBox
-    var slideBox = document.querySelectorAll(".slideBox"),i = 0;
-    setInterval(function(){
-            if(i < slideBox.length-1 ){
-                slideBox[i].classList.remove("active");
-                i++;
-                slideBox[i].classList.add("active");
-            }else{//跑到最後一張掉頭到第一張
-                slideBox[i].classList.remove("active");
-                i = 0;
-                slideBox[i].classList.add("active");
-            }
-    },2000)
+    var slideBox = document.querySelectorAll(".slideBox"),
+        activeIndex = 0,
+        slideBoxFlag = false,oldIndex = 0;
+
+    // slideAuto = setInterval(function(){
+    //     slideHandler("next");
+    // },2000);
+    var oldIndex = 0;
+    function slideHandler(type){
+        // window.clearInterval(slideAuto);
+        // 進場方向控制
+        slideBoxFlag = document.querySelector(".slideBox").classList.contains("rightToleft");
+        if((!slideBoxFlag && type === "next") | (slideBoxFlag && type === "prev")){
+            slideBox.forEach(function(element,index){
+                element.classList[(type === "next") ? "add" : "remove"]("rightToleft");
+            });
+        }
+
+      
+        // slideBox.forEach(function(element,index){
+        //     if(oldIndex !== index){
+        //         slideBox[index].style.transition = "unset";
+        //         slideBox[index].classList.remove("rightToleft");
+        //     }
+        // });
+
+        // 動畫執行
+        setTimeout(function(){
+            slideBox[activeIndex].classList.remove("active");
+
+            slideBox[activeIndex].classList.add("rightToleft");
+            // slideBox[activeIndex].style.transition = "transform 0.5s";
+
+   
+            type === "next" ? (( activeIndex < slideBox.length - 1 ) ? activeIndex++ : activeIndex = 0) : (( activeIndex > 0 ) ? activeIndex-- : activeIndex = slideBox.length - 1);
+            // slideBox[activeIndex].classList.remove("rightToleft");
+            
+            slideBox[activeIndex].classList.add("active");
+           
+        });
+    }
+
+    document.querySelector(".prev").addEventListener("click",function(){
+        slideHandler("prev");
+    },false);
+
+    document.querySelector(".next").addEventListener("click",function(){
+        slideHandler("next");
+    },false);
 
 
     window.addEventListener("resize", function () {
@@ -81,49 +122,3 @@
 var direction = function direction() {
     window.open("./page/crud.html", "_blank");
 };
-
-// ;(()=>{
-    
-//     let mobileMenuList = document.querySelector(".mobileMenuList"),
-//         overlay =  document.querySelector(".overlay"),
-//         flag = false;
-//     document.querySelector(".iconHamburger").addEventListener("click", ()=>{
-//         flag = mobileMenuList.classList.contains("active");
-//         mobileMenuList.classList[flag ? "remove" : "add"]("active");
-//         mobileMenuList.classList[flag ? "add" : "remove"]("remove");
-//         overlay.classList[flag ? "add" : "remove"]("hidden");
-//         overlay.classList[flag ? "remove" : "add"]("show");
-//     });
-    
-//     let searchContainer = document.querySelector(".searchContainer"),
-//         deskRightSectionNav =  document.querySelector(".deskRightSectionNav"),
-//         searchFlag = false;
-//     // Desk搜尋按鈕   
-//     document.querySelector(".deskSearch").addEventListener("click", ()=>{
-//         searchContainer.classList.add("show");
-//         searchContainer.classList.remove("hidden");
-//         deskRightSectionNav.classList.add("hidden");
-//         deskRightSectionNav.classList.remove("show");
-//     });
-//     // Desk搜尋關閉
-//     document.querySelector(".iconClose").addEventListener("click", ()=>{
-//         deskRightSectionNav.classList.add("show");
-//         deskRightSectionNav.classList.remove("hidden");
-//         searchContainer.classList.add("hidden");
-//         searchContainer.classList.remove("show");
-//     });
-
-//     window.addEventListener("resize", ()=>{
-//         mobileMenuList.classList["remove"]("active");
-//         overlay.classList["add"]("hidden");
-//     });
-
-
-
-// })()
-
-
-
-// let direction = () => {
-//     window.open("./page/crud.html", "_blank")
-// }
