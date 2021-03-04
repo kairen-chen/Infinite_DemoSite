@@ -102,13 +102,19 @@ if (typeof NodeList.prototype.forEach !== "function") {
       : (activeIndex = slideBox.length - 1);
 
     if (type === "next" && activeIndex === 1 && firstFlag) {
-      //因首次執行ext時有動畫重疊bug故使用setTimeout
-      setTimeout(function () {
-        firstFlag = false;
-        slideBox[activeIndex].style.transition = transitionSecond;
-        slideBox[activeIndex].classList.add("startRight");
-        slideBox[activeIndex].classList.add("active");
-      }, 10);
+      //因首次執行ext時有動畫重疊bug故使用setInterval
+      firstFlag = false;
+      var debug;
+      debug = setInterval(function() {handler()}, 50);
+      function handler(){
+        if(slideBox[activeIndex].classList.contains("startRight")){
+          window.clearInterval(debug);
+          slideBox[activeIndex].style.transition = transitionSecond;
+          slideBox[activeIndex].classList.add("active");
+        }else{
+          slideBox[activeIndex].classList.add("startRight");
+        }
+      }
     } else {
       slideBox[activeIndex].style.transition = transitionSecond;
       slideBox[activeIndex].classList.add("active");

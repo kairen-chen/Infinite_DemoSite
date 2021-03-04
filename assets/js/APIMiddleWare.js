@@ -6,15 +6,15 @@ if (!Array.prototype.find) {
   };
 }
 
-var create_action = function create_action(item) {
+var create_action = function(item) {
   return API.create(item);
 };
 
-var read_action = function read_action() {
+var read_action = function() {
   return API.read();
 };
 
-var update_action = function update_action(data, _ref) {
+var update_action = function(data, _ref) {
   var id = _ref.id;
   var item = data.find(function (item) {
     return item.id == id;
@@ -24,7 +24,7 @@ var update_action = function update_action(data, _ref) {
   return API.update({ id: id, item: item });
 };
 
-var delete_action = function delete_action(id) {
+var delete_action = function(id) {
   return API.delete(id);
 };
 
