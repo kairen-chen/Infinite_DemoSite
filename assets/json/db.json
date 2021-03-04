@@ -1,0 +1,26 @@
+{
+  "gets": [
+    {
+      "title": "hello_70正常",
+      "author": "Kairen_70",
+      "id": 5
+    },
+    {
+      "title": "hello_86中文",
+      "author": "Kairen_86",
+      "id": 7
+    },
+    {
+      "title": "hello_56",
+      "author": "Kairen_56去吃早餐",
+      "id": 8
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+1. npm install -g json-server
+ 
+
+2. path調整到本專案目錄下的json
+
+3. json-server db.json --port 4000
