@@ -2,7 +2,7 @@
 
 var 
   domain = "http://127.0.0.1",
-  port = ":4001",
+  port = ":4000",
   API = {
     baseUrl: domain + port,
     statusCode: {
@@ -19,7 +19,7 @@ var
         url: API.baseUrl + "/gets",
         async: false,
         cache: false,
-        // contentType: "application/json",
+        // contentType: "application/json; charset=UTF-8",
         // dataType: "JSON",
         // headers : {
         //     "ver"      : "1.0",
@@ -28,7 +28,9 @@ var
         //     "fileSize" : 276505673
         // },
         beforeSend: function beforeSend(xhr) {
-          xhr.overrideMimeType("json; charset=x-user-defined");
+          //第一個參數 = dataType(是網頁預期從Server接收的資料型態,若沒指定則jQuery會根據response的MIME type來推定)
+          //第一個參數 = contentType(網頁要送到Server的資料型態，若沒指定則預設為'application/x-www-form-urlencoded; charset=UTF-8')
+          xhr.overrideMimeType("json; application/json; charset=UTF-8"); 
 
           xhr.setRequestHeader("ver", "1.0");
           xhr.setRequestHeader("dataTest", "@@@@test@@@@");
