@@ -4,23 +4,24 @@ var
   domain = "http://127.0.0.1",
   port = ":4000",
   API = {
-    baseUrl: domain + port,
+    baseURL: domain + port,
     statusCode: {
-      404: function _() {
+      404: function () {
         return alert("page not found");
       },
-      500: function _() {
+      500: function () {
         return alert("server broken");
       },
     },
     read: function read() {
       return $.ajax({
         method: "GET",
-        url: API.baseUrl + "/gets",
+        url: API.baseURL + "/gets",
         async: false,
         cache: false,
-        // contentType: "application/json; charset=UTF-8",
-        // dataType: "JSON",
+        // contentType: "application/json; charset=x-user-defined",//傳送資料至 Server 的編碼類型
+        // dataType: "JSON",//指定瀏覽器把資料解析成何種type
+        // mimeType: 'json; charset=x-user-defined',
         // headers : {
         //     "ver"      : "1.0",
         //     "fileType" : "mp4",
@@ -28,9 +29,15 @@ var
         //     "fileSize" : 276505673
         // },
         beforeSend: function beforeSend(xhr) {
-          //第一個參數 = dataType(是網頁預期從Server接收的資料型態,若沒指定則jQuery會根據response的MIME type來推定)
-          //第一個參數 = contentType(網頁要送到Server的資料型態，若沒指定則預設為'application/x-www-form-urlencoded; charset=UTF-8')
-          xhr.overrideMimeType("json; application/json; charset=UTF-8"); 
+          /* 
+            overrideMimeType -> 
+
+            1.用來修改 Content-Type
+            2.部分版本的 Mozilla 瀏覽器，在伺服器送回的資料未含 json mime-type 標頭（header）時會出錯。
+            為了避免這個問題，可以用下列方法覆寫伺服器傳回的檔頭，以免傳回的不是 json 
+
+            ref -> https://iter01.com/511454.html
+          */
           // xhr.overrideMimeType("json; charset=x-user-defined");
 
           xhr.setRequestHeader("ver", "1.0");
@@ -46,7 +53,7 @@ var
 
       return $.ajax({
         method: "PUT",
-        url: API.baseUrl + "/gets/" + id,
+        url: API.baseURL + "/gets/" + id,
         async: false,
         cache: false,
         beforeSend: function beforeSend(xhr) {
@@ -59,7 +66,7 @@ var
     create: function create(item) {
       return $.ajax({
         method: "POST",
-        url: API.baseUrl + "/gets",
+        url: API.baseURL + "/gets",
         async: false,
         cache: false,
         beforeSend: function beforeSend(xhr) {
@@ -72,7 +79,7 @@ var
     delete: function _delete(id) {
       return $.ajax({
         method: "DELETE",
-        url: API.baseUrl + "/gets/" + id,
+        url: API.baseURL + "/gets/" + id,
         async: false,
         cache: false,
         beforeSend: function beforeSend(xhr) {
@@ -84,7 +91,7 @@ var
   };
 
 // let API = {
-//     baseUrl:"http://127.0.0.1:3000",
+//     baseURL:"http://127.0.0.1:3000",
 //     statusCode:{
 //         404: () => alert( "page not found" ),
 //         500: () => alert( "server broken" ),
@@ -92,7 +99,7 @@ var
 //     read : () => {
 //         return $.ajax({
 //                     method: "GET",
-//                     url: `${API.baseUrl}/gets`,
+//                     url: `${API.baseURL}/gets`,
 //                     async: false,
 //                     cache: false,
 //                     // dataType: "jsonp",
@@ -115,7 +122,7 @@ var
 //     update : ({id,item}) => {
 //         return $.ajax({
 //                     method: "PUT",
-//                     url: `${API.baseUrl}/gets/${id}`,
+//                     url: `${API.baseURL}/gets/${id}`,
 //                     async: false,
 //                     cache: false,
 //                     beforeSend: xhr => {
@@ -128,7 +135,7 @@ var
 //     create : (item) => {
 //         return $.ajax({
 //             method: "POST",
-//             url: `${API.baseUrl}/gets`,
+//             url: `${API.baseURL}/gets`,
 //             async: false,
 //             cache: false,
 //             beforeSend: xhr => {
@@ -141,7 +148,7 @@ var
 //     delete : (id) => {
 //         return $.ajax({
 //                     method: "DELETE",
-//                     url: `${API.baseUrl}/gets/${id}`,
+//                     url: `${API.baseURL}/gets/${id}`,
 //                     async: false,
 //                     cache: false,
 //                     beforeSend: xhr => {
