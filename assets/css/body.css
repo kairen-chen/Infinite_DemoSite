@@ -150,14 +150,13 @@ content {
 
 .backgroundOption {
   width: 100%;
+  position: relative;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 .backgroundOption .imageGradient {
-  width: calc(100% - 4px);
   height: 35%;
-  left: 2px;
 }
 
 .blank {
@@ -410,4 +409,58 @@ content {
   .newsContainer .readMore {
     display: none;
   }
+}
+
+/* 瀑布流way1 要給height要給height*/
+.way1_container {
+  display: flex;
+  flex-flow: column wrap;
+  height: 960px;
+  
+  /* 非必须 */
+  margin: 40px auto;
+  counter-reset: items;
+}
+
+.way1_container .item {
+  width: calc(25% - 4px);
+  position: relative;
+  margin-top: 4px;
+}
+
+.item span{
+  position: absolute;
+  bottom: 10px;
+  font-size: 1.8em;
+  font-weight: 900;
+  color: #fff;
+  margin-left: 10px;
+}
+
+/* 将内容块重排为4列 */
+.way1_container .item:nth-of-type(4n+1) { order: 1; }
+.way1_container .item:nth-of-type(4n+2) { order: 2; }
+.way1_container .item:nth-of-type(4n+3) { order: 3; }
+.way1_container .item:nth-of-type(4n)   { order: 4; }
+
+/* 强制换列 */
+.way1_container .break {
+  flex-basis: 100%;
+  width: 0;
+  border: 2px solid #fff;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* 瀑布流way2*/
+.waterfall{
+  column-count: 3;
+  column-gap: 0;
+}
+.waterfall .item{
+  box-sizing: border-box;
+  break-inside: avoid;
+  padding: 4px;
+  position: relative;
 }
