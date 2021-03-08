@@ -409,6 +409,10 @@ content {
   .newsContainer .readMore {
     display: none;
   }
+
+  .hometileContainer .way1_container,.waterfall{
+    display: none;
+  }
 }
 
 /* 瀑布流way1 要給height要給height*/
