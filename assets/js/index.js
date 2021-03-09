@@ -68,29 +68,23 @@ if (typeof NodeList.prototype.forEach !== "function") {
     prev = document.querySelector(".prev"),
     next = document.querySelector(".next"),
     activeIndex = 0,
+    transitionSecond = "transform 0.5s",
     actionFlag = true,
-    firstFlag = true,
-    transitionSecond = "transform 0.5s";
+    nextIndex = 0;
+  slideBox[activeIndex].classList.add("active");
+  slideBox[ nextIndex += ( activeIndex == (slideBox.length - 1) ) ? 0 : 1 + activeIndex] .classList.add("startRight");
 
   function slideHandler(type) {
     if (!actionFlag) return;
-    if (type === "prev") {
-      slideBox.forEach(function (element, index) {
-        if (index !== activeIndex) {
-          slideBox[index].classList.remove("startRight");
-          slideBox[index].style.transition = "unset";
-        }
-      });
-    } else {
-      slideBox.forEach(function (element, index) {
-        slideBox[index].classList.add("startRight");
-        slideBox[index].style.transition = "unset";
-      });
-    }
 
+    if (type === "prev") {
+      slideBox[nextIndex].style.transition = "unset";
+      slideBox[nextIndex].classList.remove("startRight");
+    } 
+
+    slideBox[activeIndex].classList.remove("active");
     slideBox[activeIndex].style.transition = transitionSecond;
     slideBox[activeIndex].classList[type === "prev" ? "add" : "remove"]("startRight");
-    slideBox[activeIndex].classList.remove("active");
 
     // 計算要顯示哪張slide
     type === "next"
@@ -100,25 +94,17 @@ if (typeof NodeList.prototype.forEach !== "function") {
       : activeIndex > 0
       ? activeIndex--
       : (activeIndex = slideBox.length - 1);
-
-    if (type === "next" && activeIndex === 1 && firstFlag) {
-      //因首次執行ext時有動畫重疊bug故使用setInterval
-      firstFlag = false;
-      var debug;
-      debug = setInterval(function() {handler()}, 50);
-      function handler(){
-        if(slideBox[activeIndex].classList.contains("startRight")){
-          window.clearInterval(debug);
-          slideBox[activeIndex].style.transition = transitionSecond;
-          slideBox[activeIndex].classList.add("active");
-        }else{
-          slideBox[activeIndex].classList.add("startRight");
-        }
+      
+      
+      slideBox[ activeIndex ].style.transition = transitionSecond;
+      slideBox[ activeIndex ].classList.add("active");
+      nextIndex = activeIndex == slideBox.length - 1 ? 0 : (activeIndex % (slideBox.length - 1) + 1);
+      
+      if(type === "next"){
+        slideBox[ nextIndex ].style.transition = "unset";
+        slideBox[ nextIndex ].classList.add("startRight");
       }
-    } else {
-      slideBox[activeIndex].style.transition = transitionSecond;
-      slideBox[activeIndex].classList.add("active");
-    }
+      
   }
 
   // 管控動畫結束再執行下一動作
