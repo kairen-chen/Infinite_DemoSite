@@ -351,11 +351,6 @@ content {
     transform: translateX(100%);
   }
 
-  .arrow {
-    display: flex;
-    justify-content: space-between;
-  }
-
   .prev,
   .next {
     position: absolute;
