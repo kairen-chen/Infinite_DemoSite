@@ -419,9 +419,7 @@ content {
 .way1_container {
   display: flex;
   flex-flow: column wrap;
-  height: 960px;
-  
-  /* 非必须 */
+  height: 100vh;
   margin: 40px auto;
   counter-reset: items;
 }
@@ -441,13 +439,11 @@ content {
   margin-left: 10px;
 }
 
-/* 将内容块重排为4列 */
 .way1_container .item:nth-of-type(4n+1) { order: 1; }
 .way1_container .item:nth-of-type(4n+2) { order: 2; }
 .way1_container .item:nth-of-type(4n+3) { order: 3; }
 .way1_container .item:nth-of-type(4n)   { order: 4; }
 
-/* 强制换列 */
 .way1_container .break {
   flex-basis: 100%;
   width: 0;
