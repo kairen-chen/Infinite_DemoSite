@@ -73,6 +73,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
     activeIndex = 2,
     // 動畫秒數
     transitionSecond = "transform .5s",
+    transitionSecondDelay = "transform .5s .1s",
     autoObj = { auto: true, autoSecond: 3000 };
   slideBoxInit();
   // 初始化
@@ -151,10 +152,11 @@ if (typeof NodeList.prototype.forEach !== "function") {
     }
 
     slideBox[activeIndex].classList.remove("active");
-    slideBox[activeIndex].style.transition = transitionSecond;
+    slideBox[activeIndex].style.transition = transitionSecondDelay;
     slideBox[activeIndex].classList[type === "prev" ? "add" : "remove"](
       "startRight"
     );
+
     // 計算要顯示哪張
     type === "next"
       ? activeIndex < slideBox.length - 1
@@ -177,7 +179,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
     setTimeout(function () {
       slideBox[activeIndex].style.transition = transitionSecond;
       slideBox[activeIndex].classList.add("active");
-    }, 300);
+    }, 100);
     //-----------因應dots增加 end-------------
     nextIndex =
       activeIndex == slideBox.length - 1
