@@ -177,7 +177,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
     setTimeout(function () {
       slideBox[activeIndex].style.transition = transitionSecond;
       slideBox[activeIndex].classList.add("active");
-    });
+    },100);
     //-----------因應dots增加 end-------------
     nextIndex =
       activeIndex == slideBox.length - 1
@@ -212,7 +212,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
       setTimeout(function () {
         slideBox[index].style.transition = transitionSecond;
         slideBox[index].classList.add("active");
-      });
+      },100);
     }
     // 下一張
     else if (index > activeIndex) {
@@ -222,7 +222,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
         slideBox[activeIndex].classList.remove("startRight");
         slideBox[index].style.transition = transitionSecond;
         slideBox[index].classList.add("active");
-      });
+      },100);
     }
     activeIndex = index;
     dots[index].classList.add("active");
