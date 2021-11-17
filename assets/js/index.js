@@ -73,7 +73,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
     activeIndex = 2,
     // 動畫秒數
     transitionSecond = "transform .5s",
-    transitionSecondDelay = "transform .5s .1s",
+    transitionSecondDelay = "transform .5s 50ms",
     autoObj = { auto: true, autoSecond: 3000 };
   slideBoxInit();
   // 初始化
