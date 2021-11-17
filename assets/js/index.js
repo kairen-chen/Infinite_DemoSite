@@ -166,18 +166,18 @@ if (typeof NodeList.prototype.forEach !== "function") {
 
     //-----------因應dots增加 start-------------
     if (type === "next") {
-      slideBox[activeIndex].style.transition = "unset";
+      await slideBox[activeIndex].style.transition = "unset";
       await slideBox[activeIndex].classList.add("startRight");
     } else {
       if (activeIndex === slideBox.length - 1) {
-        slideBox[activeIndex].style.transition = "unset";
+        await slideBox[activeIndex].style.transition = "unset";
         await slideBox[activeIndex].classList.remove("startRight");
       }
     }
-    setTimeout(function () {
+//     setTimeout(function () {
       slideBox[activeIndex].style.transition = transitionSecond;
       slideBox[activeIndex].classList.add("active");
-    },10);
+//     },10);
     //-----------因應dots增加 end-------------
     nextIndex =
       activeIndex == slideBox.length - 1
