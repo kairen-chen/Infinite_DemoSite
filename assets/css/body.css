@@ -303,6 +303,7 @@ content {
     display: block;
   }
 
+  /* slideBox start */
   .slideBoxContainer {
     width: 100%;
     height: 60vh;
@@ -368,6 +369,34 @@ content {
     background-image: URL("https://az749841.vo.msecnd.net/modulesassets/sfv4/Assets.img.icons.svg.carousel-right-mobile-control.1af6bb3246a406a02f66c89cd67c0422.svg");
   }
 
+  /* dots */
+  .dots {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+    bottom: 10px;
+  }
+  .dots .item {
+    width: 20px;
+    height: 3px;
+    background-color: rgb(148, 148, 148);
+    margin: 0 3px;
+    border-radius: 5px;
+    position: relative;
+  }
+  .dots .item::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 40px;
+    top: -20px;
+  }
+  .dots .item.active {
+    width: 25px;
+    background-color: rgb(255, 255, 255);
+  }
+
   .backgroundOption {
     background-position: center;
   }
@@ -377,6 +406,7 @@ content {
     height: 35%;
     left: unset;
   }
+  /* slideBox end */
 
   .blank:hover {
     transform: scale(1);
@@ -405,7 +435,8 @@ content {
     display: none;
   }
 
-  .hometileContainer .way1_container,.waterfall{
+  .hometileContainer .way1_container,
+  .waterfall {
     display: none;
   }
 }
@@ -425,7 +456,7 @@ content {
   margin-top: 4px;
 }
 
-.item span{
+.item span {
   position: absolute;
   bottom: 10px;
   font-size: 1.8em;
@@ -434,10 +465,18 @@ content {
   margin-left: 10px;
 }
 
-.way1_container .item:nth-of-type(4n+1) { order: 1; }
-.way1_container .item:nth-of-type(4n+2) { order: 2; }
-.way1_container .item:nth-of-type(4n+3) { order: 3; }
-.way1_container .item:nth-of-type(4n)   { order: 4; }
+.way1_container .item:nth-of-type(4n + 1) {
+  order: 1;
+}
+.way1_container .item:nth-of-type(4n + 2) {
+  order: 2;
+}
+.way1_container .item:nth-of-type(4n + 3) {
+  order: 3;
+}
+.way1_container .item:nth-of-type(4n) {
+  order: 4;
+}
 
 .way1_container .break {
   flex-basis: 100%;
@@ -447,13 +486,12 @@ content {
   padding: 0;
 }
 
-
 /* 瀑布流way2*/
-.waterfall{
+.waterfall {
   column-count: 3;
   column-gap: 0;
 }
-.waterfall .item{
+.waterfall .item {
   box-sizing: border-box;
   break-inside: avoid;
   padding: 4px;

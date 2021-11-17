@@ -49,9 +49,8 @@ if (typeof NodeList.prototype.forEach !== "function") {
 
   // Mobile footer 了解更多
   deskSemobileWatchMorearch.addEventListener("click", function () {
-    var footerItemContainerfFlag = footerItemContainer.classList.contains(
-      "displayShow"
-    );
+    var footerItemContainerfFlag =
+      footerItemContainer.classList.contains("displayShow");
     footerItemContainer.classList[footerItemContainerfFlag ? "remove" : "add"](
       "displayShow"
     );
@@ -63,30 +62,100 @@ if (typeof NodeList.prototype.forEach !== "function") {
     );
   });
 
-  // slideBox
+  // slideBox參數
   var slideBox = document.querySelectorAll(".slideBox"),
     prev = document.querySelector(".prev"),
     next = document.querySelector(".next"),
-    activeIndex = 0,
-    transitionSecond = "transform 0.5s",
     actionFlag = true,
-    nextIndex = 0;
-  slideBox[activeIndex].classList.add("active");
-  slideBox[ nextIndex += ( activeIndex == (slideBox.length - 1) ) ? 0 : 1 + activeIndex] .classList.add("startRight");
+    nextIndex = 0,
+    dots = document.querySelectorAll(".dots .item"),
+    // 預設顯示第幾張
+    activeIndex = 2,
+    // 動畫秒數
+    transitionSecond = "transform .5s",
+    autoObj = { auto: true, autoSecond: 3000 };
+  slideBoxInit();
+  // 初始化
+  function slideBoxInit() {
+    slideBox[activeIndex].classList.add("active");
+    slideBox[
+      (nextIndex += activeIndex == slideBox.length - 1 ? 0 : 1 + activeIndex)
+    ].classList.add("startRight");
+    dots[activeIndex].classList.add("active");
 
+    if (autoObj.auto) {
+      setInterval(() => {
+        next.click();
+      }, autoObj.autoSecond);
+    }
+
+    // --------touch---------
+    document.addEventListener("touchstart", handleTouchStart, false);
+    document.addEventListener("touchmove", handleTouchMove, false);
+
+    var xDown = null;
+    var yDown = null;
+
+    function getTouches(evt) {
+      return (
+        evt.touches || // browser API
+        evt.originalEvent.touches
+      ); // jQuery
+    }
+
+    function handleTouchStart(evt) {
+      const firstTouch = getTouches(evt)[0];
+      xDown = firstTouch.clientX;
+      yDown = firstTouch.clientY;
+    }
+
+    function handleTouchMove(evt) {
+      if (!xDown || !yDown) {
+        return;
+      }
+
+      var xUp = evt.touches[0].clientX;
+      var yUp = evt.touches[0].clientY;
+
+      var xDiff = xDown - xUp;
+      var yDiff = yDown - yUp;
+
+      if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        /*most significant*/
+        if (xDiff > 0) {
+          /* right swipe */
+          next.click();
+        } else {
+          /* left swipe */
+          prev.click();
+        }
+      } else {
+        if (yDiff > 0) {
+          /* down swipe */
+        } else {
+          /* up swipe */
+        }
+      }
+      /* reset values */
+      xDown = null;
+      yDown = null;
+    }
+  }
+  // 上下張處理
   function slideHandler(type) {
     if (!actionFlag) return;
 
     if (type === "prev") {
       slideBox[nextIndex].style.transition = "unset";
       slideBox[nextIndex].classList.remove("startRight");
-    } 
+    }
 
     slideBox[activeIndex].classList.remove("active");
     slideBox[activeIndex].style.transition = transitionSecond;
-    slideBox[activeIndex].classList[type === "prev" ? "add" : "remove"]("startRight");
-
-    // 計算要顯示哪張slide
+    slideBox[activeIndex].classList[type === "prev" ? "add" : "remove"](
+      "startRight"
+    );
+    // 計算要顯示哪張
     type === "next"
       ? activeIndex < slideBox.length - 1
         ? activeIndex++
@@ -94,17 +163,69 @@ if (typeof NodeList.prototype.forEach !== "function") {
       : activeIndex > 0
       ? activeIndex--
       : (activeIndex = slideBox.length - 1);
-      
-      
-      slideBox[ activeIndex ].style.transition = transitionSecond;
-      slideBox[ activeIndex ].classList.add("active");
-      nextIndex = activeIndex == slideBox.length - 1 ? 0 : (activeIndex % (slideBox.length - 1) + 1);
-      
-      if(type === "next"){
-        slideBox[ nextIndex ].style.transition = "unset";
-        slideBox[ nextIndex ].classList.add("startRight");
+
+    //-----------因應dots增加 start-------------
+    if (type === "next") {
+      slideBox[activeIndex].style.transition = "unset";
+      slideBox[activeIndex].classList.add("startRight");
+    } else {
+      if (activeIndex === slideBox.length - 1) {
+        slideBox[activeIndex].style.transition = "unset";
+        slideBox[activeIndex].classList.remove("startRight");
       }
-      
+    }
+    setTimeout(() => {
+      slideBox[activeIndex].style.transition = transitionSecond;
+      slideBox[activeIndex].classList.add("active");
+    });
+    //-----------因應dots增加 end-------------
+    nextIndex =
+      activeIndex == slideBox.length - 1
+        ? 0
+        : (activeIndex % (slideBox.length - 1)) + 1;
+
+    if (type === "next") {
+      slideBox[nextIndex].style.transition = "unset";
+      slideBox[nextIndex].classList.add("startRight");
+    }
+
+    // handle dots
+    document.querySelector(".dots .item.active").classList.remove("active");
+    dots[activeIndex].classList.add("active");
+  }
+
+  // 處理dots
+  function dotsHandler(index) {
+    if (index === activeIndex) return;
+    // 全部狀態歸0
+    slideBox.forEach(function (element, index) {
+      element.classList.remove("startRight");
+      element.classList.remove("active");
+      element.removeAttribute("style");
+    });
+    document.querySelector(".dots .item.active").classList.remove("active");
+
+    // 上一張
+    if (index < activeIndex) {
+      slideBox[activeIndex].style.transition = transitionSecond;
+      slideBox[activeIndex].classList.add("startRight");
+      setTimeout(() => {
+        slideBox[index].style.transition = transitionSecond;
+        slideBox[index].classList.add("active");
+      });
+    }
+    // 下一張
+    else if (index > activeIndex) {
+      slideBox[activeIndex].style.transition = transitionSecond;
+      slideBox[index].classList.add("startRight");
+      setTimeout(() => {
+        slideBox[activeIndex].classList.remove("startRight");
+        slideBox[index].style.transition = transitionSecond;
+        slideBox[index].classList.add("active");
+      });
+    }
+    activeIndex = index;
+    dots[index].classList.add("active");
   }
 
   // 管控動畫結束再執行下一動作
@@ -140,6 +261,17 @@ if (typeof NodeList.prototype.forEach !== "function") {
     },
     false
   );
+
+  dots.forEach(function (element, index) {
+    element.addEventListener(
+      "click",
+      function (e) {
+        let clickItem = Number(element.dataset.item);
+        dotsHandler(clickItem);
+      },
+      false
+    );
+  });
 
   window.addEventListener("resize", function () {
     mobileMenuList.classList.remove("active");
