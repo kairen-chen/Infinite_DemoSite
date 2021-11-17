@@ -142,7 +142,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
     }
   }
   // 上下張處理
-  function slideHandler(type) {
+  async function slideHandler(type) {
     if (!actionFlag) return;
 
     if (type === "prev") {
@@ -167,11 +167,11 @@ if (typeof NodeList.prototype.forEach !== "function") {
     //-----------因應dots增加 start-------------
     if (type === "next") {
       slideBox[activeIndex].style.transition = "unset";
-      slideBox[activeIndex].classList.add("startRight");
+      await slideBox[activeIndex].classList.add("startRight");
     } else {
       if (activeIndex === slideBox.length - 1) {
         slideBox[activeIndex].style.transition = "unset";
-        slideBox[activeIndex].classList.remove("startRight");
+        await slideBox[activeIndex].classList.remove("startRight");
       }
     }
     setTimeout(function () {
