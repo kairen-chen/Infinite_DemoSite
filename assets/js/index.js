@@ -165,19 +165,23 @@ if (typeof NodeList.prototype.forEach !== "function") {
       : (activeIndex = slideBox.length - 1);
 
     //-----------因應dots增加 start-------------
-    if (type === "next") {
-      slideBox[activeIndex].classList.add("startRight");
-      slideBox[activeIndex].style.transition = "unset";
-    } else {
-      if (activeIndex === slideBox.length - 1) {
-         slideBox[activeIndex].classList.remove("startRight");
-         slideBox[activeIndex].style.transition = "unset";
+    new promiss(function (resolve, reject) {
+      if (type === "next") {
+        slideBox[activeIndex].classList.add("startRight");
+        slideBox[activeIndex].style.transition = "unset";
+      } else {
+        if (activeIndex === slideBox.length - 1) {
+          slideBox[activeIndex].classList.remove("startRight");
+          slideBox[activeIndex].style.transition = "unset";
+        }
       }
-    }
-//     setTimeout(function () {
+      resolve();
+    }).then(function () {
+      //     setTimeout(function () {
       slideBox[activeIndex].style.transition = transitionSecond;
       slideBox[activeIndex].classList.add("active");
-//     },10);
+      //     },10);
+    });
     //-----------因應dots增加 end-------------
     nextIndex =
       activeIndex == slideBox.length - 1
