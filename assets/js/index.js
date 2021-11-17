@@ -177,7 +177,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
     setTimeout(function () {
       slideBox[activeIndex].style.transition = transitionSecond;
       slideBox[activeIndex].classList.add("active");
-    },100);
+    },10);
     //-----------因應dots增加 end-------------
     nextIndex =
       activeIndex == slideBox.length - 1
