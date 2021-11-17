@@ -165,23 +165,19 @@ if (typeof NodeList.prototype.forEach !== "function") {
       : (activeIndex = slideBox.length - 1);
 
     //-----------因應dots增加 start-------------
-    new promiss(function (resolve, reject) {
-      if (type === "next") {
-        slideBox[activeIndex].classList.add("startRight");
+    if (type === "next") {
+      slideBox[activeIndex].style.transition = "unset";
+      slideBox[activeIndex].classList.add("startRight");
+    } else {
+      if (activeIndex === slideBox.length - 1) {
         slideBox[activeIndex].style.transition = "unset";
-      } else {
-        if (activeIndex === slideBox.length - 1) {
-          slideBox[activeIndex].classList.remove("startRight");
-          slideBox[activeIndex].style.transition = "unset";
-        }
+        slideBox[activeIndex].classList.remove("startRight");
       }
-      resolve();
-    }).then(function () {
-      //     setTimeout(function () {
+    }
+    setTimeout(function () {
       slideBox[activeIndex].style.transition = transitionSecond;
       slideBox[activeIndex].classList.add("active");
-      //     },10);
-    });
+    }, 0);
     //-----------因應dots增加 end-------------
     nextIndex =
       activeIndex == slideBox.length - 1
