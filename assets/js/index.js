@@ -84,7 +84,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
     dots[activeIndex].classList.add("active");
 
     if (autoObj.auto) {
-      setInterval(() => {
+      setInterval(function () {
         next.click();
       }, autoObj.autoSecond);
     }
@@ -174,7 +174,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
         slideBox[activeIndex].classList.remove("startRight");
       }
     }
-    setTimeout(() => {
+    setTimeout(function () {
       slideBox[activeIndex].style.transition = transitionSecond;
       slideBox[activeIndex].classList.add("active");
     });
@@ -209,7 +209,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
     if (index < activeIndex) {
       slideBox[activeIndex].style.transition = transitionSecond;
       slideBox[activeIndex].classList.add("startRight");
-      setTimeout(() => {
+      setTimeout(function () {
         slideBox[index].style.transition = transitionSecond;
         slideBox[index].classList.add("active");
       });
@@ -218,7 +218,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
     else if (index > activeIndex) {
       slideBox[activeIndex].style.transition = transitionSecond;
       slideBox[index].classList.add("startRight");
-      setTimeout(() => {
+      setTimeout(function () {
         slideBox[activeIndex].classList.remove("startRight");
         slideBox[index].style.transition = transitionSecond;
         slideBox[index].classList.add("active");
