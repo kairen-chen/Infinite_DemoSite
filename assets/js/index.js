@@ -73,8 +73,23 @@ if (typeof NodeList.prototype.forEach !== "function") {
     activeIndex = 2,
     // 動畫秒數
     transitionSecond = "transform .5s",
-    transitionSecondDelay = "transform .5s 50ms",
-    autoObj = { auto: true, autoSecond: 3000 };
+    transitionSecondDelay = "transform .5s 100ms",
+    autoObj = {
+      auto: true,
+      autoSecond: 3000,
+      interval: null,
+      timer: function () {
+        autoObj.interval = setInterval(function () {
+          if (autoObj.auto) {
+            slideHandler("next", "auto");
+          } else {
+            clearInterval(autoObj.interval);
+            autoObj.auto = true;
+            autoObj.timer();
+          }
+        }, autoObj.autoSecond);
+      },
+    };
   slideBoxInit();
   // 初始化
   function slideBoxInit() {
@@ -84,12 +99,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
     ].classList.add("startRight");
     dots[activeIndex].classList.add("active");
 
-    if (autoObj.auto) {
-      setInterval(function () {
-        next.click();
-      }, autoObj.autoSecond);
-    }
-
+    autoObj.timer();
     // --------touch---------
     document.addEventListener("touchstart", handleTouchStart, false);
     document.addEventListener("touchmove", handleTouchMove, false);
@@ -143,9 +153,11 @@ if (typeof NodeList.prototype.forEach !== "function") {
     }
   }
   // 上下張處理
-  function slideHandler(type) {
+  function slideHandler(type, autoFlag) {
     if (!actionFlag) return;
-
+    if (!autoFlag) {
+      autoObj.auto = false;
+    }
     if (type === "prev") {
       slideBox[nextIndex].style.transition = "unset";
       slideBox[nextIndex].classList.remove("startRight");
@@ -199,6 +211,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
   // 處理dots
   function dotsHandler(index) {
     if (index === activeIndex) return;
+    autoObj.auto = false;
     // 全部狀態歸0
     slideBox.forEach(function (element, index) {
       element.classList.remove("startRight");
