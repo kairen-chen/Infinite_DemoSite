@@ -62,18 +62,20 @@ if (typeof NodeList.prototype.forEach !== "function") {
     );
   });
 
+  //--------- slideBox start ---------
   // slideBox參數
   var slideBox = document.querySelectorAll(".slideBox"),
-    prev = document.querySelector(".prev"),
-    next = document.querySelector(".next"),
-    actionFlag = true,
-    nextIndex = 0,
     dots = document.querySelectorAll(".dots .item"),
+    // 動畫是否執行中
+    actionFlag = true,
+    // 預期上一張下一張
+    nextIndex = 0,
     // 預設顯示第幾張
     activeIndex = 2,
     // 動畫秒數
     transitionSecond = "transform .5s",
     transitionSecondDelay = "transform .5s 100ms",
+    // 自動播放參數
     autoObj = {
       auto: true,
       autoSecond: 3000,
@@ -93,13 +95,60 @@ if (typeof NodeList.prototype.forEach !== "function") {
   slideBoxInit();
   // 初始化
   function slideBoxInit() {
+    var prev = document.querySelector(".prev"),
+      next = document.querySelector(".next");
+    // 管控動畫結束再執行下一動作
+    slideBox.forEach(function (element, index) {
+      element.addEventListener(
+        "transitionend",
+        function (e) {
+          actionFlag = true;
+        },
+        false
+      );
+      element.addEventListener(
+        "transitionstart",
+        function (e) {
+          actionFlag = false;
+        },
+        false
+      );
+    });
+
+    prev.addEventListener(
+      "click",
+      function () {
+        slideHandler("prev");
+      },
+      false
+    );
+
+    next.addEventListener(
+      "click",
+      function () {
+        slideHandler("next");
+      },
+      false
+    );
+
+    dots.forEach(function (element, index) {
+      element.addEventListener(
+        "click",
+        function (e) {
+          let clickItem = Number(element.dataset.item);
+          dotsHandler(clickItem);
+        },
+        false
+      );
+    });
+
     slideBox[activeIndex].classList.add("active");
     slideBox[
       (nextIndex += activeIndex == slideBox.length - 1 ? 0 : 1 + activeIndex)
     ].classList.add("startRight");
     dots[activeIndex].classList.add("active");
-
-    autoObj.timer();
+    // 是否自動播放
+    if (autoObj.auto) autoObj.timer();
     // --------touch---------
     document.addEventListener("touchstart", handleTouchStart, false);
     document.addEventListener("touchmove", handleTouchMove, false);
@@ -207,7 +256,6 @@ if (typeof NodeList.prototype.forEach !== "function") {
     document.querySelector(".dots .item.active").classList.remove("active");
     dots[activeIndex].classList.add("active");
   }
-
   // 處理dots
   function dotsHandler(index) {
     if (index === activeIndex) return;
@@ -242,51 +290,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
     activeIndex = index;
     dots[index].classList.add("active");
   }
-
-  // 管控動畫結束再執行下一動作
-  slideBox.forEach(function (element, index) {
-    element.addEventListener(
-      "transitionend",
-      function (e) {
-        actionFlag = true;
-      },
-      false
-    );
-    element.addEventListener(
-      "transitionstart",
-      function (e) {
-        actionFlag = false;
-      },
-      false
-    );
-  });
-
-  prev.addEventListener(
-    "click",
-    function () {
-      slideHandler("prev");
-    },
-    false
-  );
-
-  next.addEventListener(
-    "click",
-    function () {
-      slideHandler("next");
-    },
-    false
-  );
-
-  dots.forEach(function (element, index) {
-    element.addEventListener(
-      "click",
-      function (e) {
-        let clickItem = Number(element.dataset.item);
-        dotsHandler(clickItem);
-      },
-      false
-    );
-  });
+  //--------- slideBox end ---------
 
   window.addEventListener("resize", function () {
     mobileMenuList.classList.remove("active");
