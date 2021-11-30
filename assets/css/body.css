@@ -346,6 +346,8 @@ content {
 
   .hometileContainer .slideBox.active {
     transform: translateX(0) !important;
+    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
   }
 
   .hometileContainer .slideBox.startRight {
