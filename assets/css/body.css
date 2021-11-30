@@ -342,18 +342,16 @@ content {
     align-items: center;
     justify-content: center;
     flex-flow: column;
-/*     transform: translate3d(-100%,0,0);
-    -webkit-transform: translate3d(-100%,0,0); */
   }
 
   .hometileContainer .slideBox.active {
     transform: translateX(0) !important;
+    -webkit-transform: translate3d(0px, 0px, 0px)!important,
+    -webkit-transition: -webkit-transform 0.3s linear!important,
   }
 
   .hometileContainer .slideBox.startRight {
     transform: translateX(100%);
-/*      transform: translate3d(100%,0,0);
-    -webkit-transform: translate3d(100%,0,0); */
   }
 
   .prev,
