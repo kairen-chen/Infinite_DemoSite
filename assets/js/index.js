@@ -71,7 +71,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
     // 預期上一張下一張
     nextIndex = 0,
     // 預設顯示第幾張
-    activeIndex = 2,
+    activeIndex = 1,
     // 動畫秒數
     transitionSecond = "transform .5s",
     transitionSecondDelay = "transform .5s 100ms",
@@ -82,19 +82,20 @@ if (typeof NodeList.prototype.forEach !== "function") {
       interval: null,
       timer: function () {
         autoObj.interval = setInterval(function () {
-          if (autoObj.auto) {
-            slideHandler("next", "auto");
-          } else {
-            clearInterval(autoObj.interval);
-            autoObj.auto = true;
-            autoObj.timer();
-          }
+          slideHandler("next", "auto");
         }, autoObj.autoSecond);
+      },
+      restTimer: function () {
+        if (autoObj.auto) {
+          clearInterval(autoObj.interval);
+          autoObj.timer();
+        }
       },
     };
   slideBoxInit();
   // 初始化
   function slideBoxInit() {
+    var touchtime = Number;
     var prev = document.querySelector(".prev"),
       next = document.querySelector(".next");
     // 管控動畫結束再執行下一動作
@@ -147,11 +148,14 @@ if (typeof NodeList.prototype.forEach !== "function") {
       (nextIndex += activeIndex == slideBox.length - 1 ? 0 : 1 + activeIndex)
     ].classList.add("startRight");
     dots[activeIndex].classList.add("active");
+
     // 是否自動播放
     if (autoObj.auto) autoObj.timer();
     // --------touch---------
-    document.addEventListener("touchstart", handleTouchStart, false);
-    document.addEventListener("touchmove", handleTouchMove, false);
+    var slideWrapper = document.querySelector(".slideWrapper");
+    slideWrapper.addEventListener("touchstart", handleTouchStart, false);
+    slideWrapper.addEventListener("touchmove", handleTouchMove, false);
+    slideWrapper.addEventListener("touchend", handleTouchEnd, false);
 
     var xDown = null;
     var yDown = null;
@@ -164,23 +168,49 @@ if (typeof NodeList.prototype.forEach !== "function") {
     }
 
     function handleTouchStart(evt) {
+      touchtime = new Date().getTime();
       const firstTouch = getTouches(evt)[0];
       xDown = firstTouch.clientX;
       yDown = firstTouch.clientY;
     }
 
     function handleTouchMove(evt) {
+      clearInterval(autoObj.interval);
       if (!xDown || !yDown) {
         return;
       }
-
       var xUp = evt.touches[0].clientX;
       var yUp = evt.touches[0].clientY;
 
       var xDiff = xDown - xUp;
       var yDiff = yDown - yUp;
+      // 上 / 下張
+      if (Math.abs(xDiff) > Math.abs(yDiff) && Math.abs(xDiff) >= 10.1) {
+        // 反彈效果(目前有殘影,原因是換下一張時translateX無法從xDiff的位置接續滑入)
+        // slideWrapper.style.transition = "transform .5s";
+        // slideWrapper.style.transform =
+        //   "translateX(" + (xDiff > 0 ? -xDiff : Math.abs(xDiff)) + "px)";
+      }
+    }
+    function handleTouchEnd(evt) {
+      autoObj.restTimer();
+      if (!xDown || !yDown) {
+        return;
+      }
+      var xUp = evt.changedTouches[0].clientX;
+      var yUp = evt.changedTouches[0].clientY;
 
-      if (Math.abs(xDiff) > Math.abs(yDiff)) {
+      var xDiff = xDown - xUp;
+      var yDiff = yDown - yUp;
+      var timeDiff = Math.abs(touchtime - new Date().getTime());
+
+      // 上 / 下張
+      if (
+        Math.abs(xDiff) > Math.abs(yDiff) &&
+        Math.abs(xDiff) > 100 &&
+        timeDiff > 150 &&
+        timeDiff < 450
+      ) {
         /*most significant*/
         if (xDiff > 0) {
           /* right swipe */
@@ -189,23 +219,19 @@ if (typeof NodeList.prototype.forEach !== "function") {
           /* left swipe */
           prev.click();
         }
-      } else {
-        if (yDiff > 0) {
-          /* down swipe */
-        } else {
-          /* up swipe */
-        }
       }
+      slideWrapper.style.transform = "translateX(" + 0 + "px)";
       /* reset values */
       xDown = null;
       yDown = null;
+      // 放掉後定位於0px
     }
   }
   // 上下張處理
   function slideHandler(type, autoFlag) {
     if (!actionFlag) return;
     if (!autoFlag) {
-      autoObj.auto = false;
+      autoObj.restTimer();
     }
     if (type === "prev") {
       slideBox[nextIndex].style.transition = "unset";
@@ -259,7 +285,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
   // 處理dots
   function dotsHandler(index) {
     if (index === activeIndex) return;
-    autoObj.auto = false;
+    autoObj.restTimer();
     // 全部狀態歸0
     slideBox.forEach(function (element, index) {
       element.classList.remove("startRight");
