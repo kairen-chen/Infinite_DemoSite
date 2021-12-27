@@ -208,8 +208,8 @@ if (typeof NodeList.prototype.forEach !== "function") {
       if (
         Math.abs(xDiff) > Math.abs(yDiff) &&
         Math.abs(xDiff) > 100 &&
-        timeDiff > 150 &&
-        timeDiff < 350
+        timeDiff > 120 &&
+        timeDiff < 300
       ) {
         /*most significant*/
         if (xDiff > 0) {
