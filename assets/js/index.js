@@ -209,7 +209,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
         Math.abs(xDiff) > Math.abs(yDiff) &&
         Math.abs(xDiff) > 100 &&
         timeDiff > 150 &&
-        timeDiff < 450
+        timeDiff < 350
       ) {
         /*most significant*/
         if (xDiff > 0) {
