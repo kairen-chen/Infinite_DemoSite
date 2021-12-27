@@ -207,7 +207,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
       // 上 / 下張
       if (
         Math.abs(xDiff) > Math.abs(yDiff) &&
-        Math.abs(xDiff) > 70 &&
+        Math.abs(xDiff) > 50 &&
         timeDiff > 80 &&
         timeDiff < 250
       ) {
