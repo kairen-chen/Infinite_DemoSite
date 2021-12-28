@@ -185,14 +185,14 @@ if (typeof NodeList.prototype.forEach !== "function") {
       var yDiff = yDown - yUp;
       var timeDiff = Math.abs(touchtime - new Date().getTime());
 
-      console.log(xDiff, yDiff, timeDiff);
+      console.log("x: ", xDiff, "y: ", yDiff, "tiem: ", timeDiff);
       // 上 / 下張
       if (
-        Math.abs(xDiff) > Math.abs(yDiff) ||
-        (Math.abs(yDiff) < 4 &&
-          Math.abs(xDiff) > 3 &&
-          timeDiff > 30 &&
-          timeDiff < 90)
+        Math.abs(xDiff) > Math.abs(yDiff) &&
+        Math.abs(yDiff) < 5 &&
+        Math.abs(xDiff) > 3 &&
+        timeDiff > 30 &&
+        timeDiff < 120
       ) {
         /*most significant*/
         if (xDiff > 0) {
