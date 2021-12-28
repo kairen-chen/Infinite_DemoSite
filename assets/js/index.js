@@ -189,8 +189,8 @@ if (typeof NodeList.prototype.forEach !== "function") {
       // 上 / 下張
       if (
         Math.abs(xDiff) > Math.abs(yDiff) &&
+        Math.abs(xDiff) > 8 &&
         Math.abs(yDiff) < 5 &&
-        Math.abs(xDiff) > 3 &&
         timeDiff > 30 &&
         timeDiff < 120
       ) {
