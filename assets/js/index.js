@@ -185,12 +185,14 @@ if (typeof NodeList.prototype.forEach !== "function") {
       var yDiff = yDown - yUp;
       var timeDiff = Math.abs(touchtime - new Date().getTime());
 
+      document.querySelector(".pamrContainer").innerHTML = "";
+      document.querySelector(".pamrContainer").append(`x : ${xDiff}`);
+      //  Math.abs(xDiff) > 3 &&
+      //  Math.abs(yDiff) < 5 &&
       // 上 / 下張
       if (
         Math.abs(xDiff) > Math.abs(yDiff) &&
-        Math.abs(xDiff) > 3 &&
-        Math.abs(yDiff) < 5 &&
-        timeDiff > 30 &&
+        timeDiff > 20 &&
         timeDiff < 120
       ) {
         /*most significant*/
