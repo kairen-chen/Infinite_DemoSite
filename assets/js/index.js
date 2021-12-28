@@ -185,7 +185,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
       var yDiff = yDown - yUp;
       var timeDiff = Math.abs(touchtime - new Date().getTime());
 
-      console.log("x: ", xDiff, "y: ", yDiff, "tiem: ", timeDiff);
+      alert("x: " + xDiff + " y: " + yDiff + " tiem: " + timeDiff);
       // 上 / 下張
       if (
         Math.abs(xDiff) > Math.abs(yDiff) &&
