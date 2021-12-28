@@ -185,9 +185,15 @@ if (typeof NodeList.prototype.forEach !== "function") {
       var yDiff = yDown - yUp;
       var timeDiff = Math.abs(touchtime - new Date().getTime());
 
-      console.log(timeDiff);
+      console.log(xDiff, yDiff);
       // 上 / 下張
-      if (Math.abs(xDiff) > Math.abs(yDiff) && timeDiff > 20 && timeDiff < 90) {
+      if (
+        Math.abs(xDiff) > Math.abs(yDiff) ||
+        (Math.abs(yDiff) < 4 &&
+          Math.abs(xDiff) > 3 &&
+          timeDiff > 20 &&
+          timeDiff < 90)
+      ) {
         /*most significant*/
         if (xDiff > 0) {
           /* right swipe */
