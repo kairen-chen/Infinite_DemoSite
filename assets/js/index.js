@@ -186,13 +186,14 @@ if (typeof NodeList.prototype.forEach !== "function") {
       var timeDiff = Math.abs(touchtime - new Date().getTime());
 
       // alert("x: " + xDiff + " y: " + yDiff + " tiem: " + timeDiff);
+      // &&
+      //   timeDiff > 20 &&
+      //   timeDiff < 120
       // 上 / 下張
       if (
         Math.abs(xDiff) > Math.abs(yDiff) &&
         Math.abs(xDiff) > 8 &&
-        Math.abs(yDiff) < 5 &&
-        timeDiff > 20 &&
-        timeDiff < 120
+        Math.abs(yDiff) < 5
       ) {
         /*most significant*/
         if (xDiff > 0) {
