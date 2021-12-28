@@ -185,16 +185,22 @@ if (typeof NodeList.prototype.forEach !== "function") {
       var yDiff = yDown - yUp;
       var timeDiff = Math.abs(touchtime - new Date().getTime());
 
+      // -----------------------------------
+      // 滑動敏感度調整
       document.querySelector(".pamrContainer").innerHTML = "";
-      document.querySelector(".pamrContainer").append(`x : ${xDiff}`);
+      document
+        .querySelector(".pamrContainer")
+        .append(`x : ${xDiff} , y : ${yDiff} , time : ${timeDiff}`);
       //  Math.abs(xDiff) > 3 &&
       //  Math.abs(yDiff) < 5 &&
+
       // 上 / 下張
       if (
         Math.abs(xDiff) > Math.abs(yDiff) &&
         timeDiff > 20 &&
         timeDiff < 120
       ) {
+        // -----------------------------------
         /*most significant*/
         if (xDiff > 0) {
           /* right swipe */
