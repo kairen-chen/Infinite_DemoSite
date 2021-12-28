@@ -191,7 +191,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
         Math.abs(xDiff) > Math.abs(yDiff) &&
         Math.abs(xDiff) > 8 &&
         Math.abs(yDiff) < 5 &&
-        timeDiff > 30 &&
+        timeDiff > 20 &&
         timeDiff < 120
       ) {
         /*most significant*/
