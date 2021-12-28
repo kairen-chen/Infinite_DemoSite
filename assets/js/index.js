@@ -175,7 +175,6 @@ if (typeof NodeList.prototype.forEach !== "function") {
     }
 
     function handleTouchMove(evt) {
-      clearInterval(autoObj.interval);
       if (!xDown || !yDown) {
         return;
       }
@@ -184,33 +183,11 @@ if (typeof NodeList.prototype.forEach !== "function") {
 
       var xDiff = xDown - xUp;
       var yDiff = yDown - yUp;
-      // 上 / 下張
-      if (Math.abs(xDiff) > Math.abs(yDiff) && Math.abs(xDiff) >= 10.1) {
-        // 反彈效果(目前有殘影,原因是換下一張時translateX無法從xDiff的位置接續滑入)
-        // slideWrapper.style.transition = "transform .5s";
-        // slideWrapper.style.transform =
-        //   "translateX(" + (xDiff > 0 ? -xDiff : Math.abs(xDiff)) + "px)";
-      }
-    }
-    function handleTouchEnd(evt) {
-      autoObj.restTimer();
-      if (!xDown || !yDown) {
-        return;
-      }
-      var xUp = evt.changedTouches[0].clientX;
-      var yUp = evt.changedTouches[0].clientY;
-
-      var xDiff = xDown - xUp;
-      var yDiff = yDown - yUp;
       var timeDiff = Math.abs(touchtime - new Date().getTime());
 
+      console.log(timeDiff);
       // 上 / 下張
-      if (
-        Math.abs(xDiff) > Math.abs(yDiff) &&
-        Math.abs(xDiff) > 50 &&
-        timeDiff > 80 &&
-        timeDiff < 250
-      ) {
+      if (Math.abs(xDiff) > Math.abs(yDiff) && timeDiff > 20 && timeDiff < 90) {
         /*most significant*/
         if (xDiff > 0) {
           /* right swipe */
@@ -219,12 +196,51 @@ if (typeof NodeList.prototype.forEach !== "function") {
           /* left swipe */
           prev.click();
         }
+      } else {
+        // 反彈效果(目前有殘影,原因是換下一張時translateX無法從xDiff的位置接續滑入)
+        slideWrapper.style.transition = "transform .5s";
+        slideWrapper.style.transform =
+          "translateX(" +
+          (xDiff > 0 ? -xDiff * 10 : Math.abs(xDiff * 10)) +
+          "px)";
       }
-      slideWrapper.style.transform = "translateX(" + 0 + "px)";
       /* reset values */
       xDown = null;
       yDown = null;
+    }
+    function handleTouchEnd(evt) {
+      autoObj.restTimer();
+      // if (!xDown || !yDown) {
+      //   return;
+      // }
+      // var xUp = evt.changedTouches[0].clientX;
+      // var yUp = evt.changedTouches[0].clientY;
+
+      // var xDiff = xDown - xUp;
+      // var yDiff = yDown - yUp;
+      // var timeDiff = Math.abs(touchtime - new Date().getTime());
+
+      // // 上 / 下張
+      // if (
+      //   Math.abs(xDiff) > Math.abs(yDiff) &&
+      //   Math.abs(xDiff) > 50 &&
+      //   timeDiff > 80 &&
+      //   timeDiff < 250
+      // ) {
+      //   /*most significant*/
+      //   if (xDiff > 0) {
+      //     /* right swipe */
+      //     next.click();
+      //   } else {
+      //     /* left swipe */
+      //     prev.click();
+      //   }
+      // }
       // 放掉後定位於0px
+      slideWrapper.style.transform = "translateX(" + 0 + "px)";
+      /* reset values */
+      // xDown = null;
+      // yDown = null;
     }
   }
   // 上下張處理
