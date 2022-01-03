@@ -5,6 +5,30 @@ if (typeof NodeList.prototype.forEach !== "function") {
 }
 
 (function () {
+  // ------- Notification start -------
+  // https://www.gss.com.tw/blog/javascript-notification
+  var notifyConfig = {
+    body: "\\ ^o^ /", // 設定內容
+    image:
+      "https://az749841.vo.msecnd.net/siteszhtw/alv1/e4503cca-106d-4e5e-a803-72a1dccff6e8/SiteMap%E5%9C%96%E7%89%87%E6%9B%B4%E6%96%B0_1672x662.3ec174bc91e9b70fa27279e6eabca32e.fill-729x289.jpg",
+    icon: "https://az749841.vo.msecnd.net/modulesassets/sfv4/Assets.img.skoda-logo-landscapeV2.a4df7efeb9c9eb4987594f574894ff1e.154x46-Fill.png", // 設定 icon
+    tag: "newArrival",
+    requireInteraction: true,
+  };
+
+  if (
+    Notification.permission === "default" ||
+    Notification.permission === "undefined"
+  ) {
+    Notification.requestPermission(function (permission) {
+      if (permission === "granted") {
+        // 使用者同意授權
+        var n = new Notification("Hi there!", notifyConfig); // 建立通知
+      }
+    });
+  }
+  // ------- Notification end -------
+
   var mobileMenuList = document.querySelector(".mobileMenuList"),
     overlay = document.querySelector(".overlay"),
     searchContainer = document.querySelector(".searchContainer"),
@@ -279,6 +303,8 @@ if (typeof NodeList.prototype.forEach !== "function") {
       slideBox[nextIndex].style.transition = "unset";
       slideBox[nextIndex].classList.add("startRight");
     }
+
+    new Notification("Hi, welcome to SKODA !" + activeIndex, notifyConfig);
 
     // handle dots
     document.querySelector(".dots .item.active").classList.remove("active");
