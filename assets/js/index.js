@@ -16,17 +16,17 @@ if (typeof NodeList.prototype.forEach !== "function") {
     requireInteraction: true,
   };
 
-  if (
-    Notification?.permission === "default" ||
-    Notification?.permission === "undefined"
-  ) {
-    Notification.requestPermission(function (permission) {
-      if (permission === "granted") {
-        // 使用者同意授權
-        var n = new Notification("Hi there!", notifyConfig); // 建立通知
-      }
-    });
-  }
+//   if (
+//     Notification?.permission === "default" ||
+//     Notification?.permission === "undefined"
+//   ) {
+//     Notification.requestPermission(function (permission) {
+//       if (permission === "granted") {
+//         // 使用者同意授權
+//         var n = new Notification("Hi there!", notifyConfig); // 建立通知
+//       }
+//     });
+//   }
   // ------- Notification end -------
 
   var mobileMenuList = document.querySelector(".mobileMenuList"),
