@@ -17,8 +17,8 @@ if (typeof NodeList.prototype.forEach !== "function") {
   };
 
   if (
-    Notification.permission === "default" ||
-    Notification.permission === "undefined"
+    Notification?.permission === "default" ||
+    Notification?.permission === "undefined"
   ) {
     Notification.requestPermission(function (permission) {
       if (permission === "granted") {
