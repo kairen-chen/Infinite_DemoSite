@@ -304,7 +304,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
       slideBox[nextIndex].classList.add("startRight");
     }
 
-    new Notification("Hi, welcome to SKODA !" + activeIndex, notifyConfig);
+//     new Notification("Hi, welcome to SKODA !" + activeIndex, notifyConfig);
 
     // handle dots
     document.querySelector(".dots .item.active").classList.remove("active");
