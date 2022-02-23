@@ -98,7 +98,6 @@ if (typeof NodeList.prototype.forEach !== "function") {
     activeIndex = 1,
     // 動畫秒數
     transitionSecond = "transform .4s",
-    // transitionSecondDelay = "transform .5s 100ms",
     transitionSecondDelay = "transform .4s",
     // 自動播放參數
     autoObj = {
@@ -211,10 +210,6 @@ if (typeof NodeList.prototype.forEach !== "function") {
       var yDiff = yDown - yUp;
       var timeDiff = Math.abs(touchtime - new Date().getTime());
       // -----------------------------------
-      document.querySelector(".pamrContainer").innerHTML = "";
-      document
-        .querySelector(".pamrContainer")
-        .append(`x : ${xDiff} , y : ${yDiff} , time : ${timeDiff}`);
       if (
         timeDiff > 400 
       ) {
@@ -231,6 +226,12 @@ if (typeof NodeList.prototype.forEach !== "function") {
         xDiff = xDown - xUp,
         yDiff = yDown - yUp,
         timeDiff = Math.abs(touchtime - new Date().getTime());
+
+      // 看參數
+      // document.querySelector(".pamrContainer").innerHTML = "";
+      // document
+      //   .querySelector(".pamrContainer")
+      //   .append(`x : ${Math.abs(xDown - xUp)} , y : ${Math.abs(yDown - yUp)} , time : ${timeDiff}`);
 
       // 上 / 下張 靈敏度調整
       if (
@@ -291,10 +292,8 @@ if (typeof NodeList.prototype.forEach !== "function") {
         slideBox[activeIndex].classList.remove("startRight");
       }
     }
-    // setTimeout(function () {
       slideBox[activeIndex].style.transition = transitionSecond;
       slideBox[activeIndex].classList.add("active");
-    // }, 100);
     //-----------因應dots增加 end-------------
     nextIndex =
       activeIndex == slideBox.length - 1
