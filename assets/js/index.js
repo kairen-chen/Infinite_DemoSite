@@ -16,17 +16,17 @@ if (typeof NodeList.prototype.forEach !== "function") {
     requireInteraction: true,
   };
 
-//   if (
-//     Notification?.permission === "default" ||
-//     Notification?.permission === "undefined"
-//   ) {
-//     Notification.requestPermission(function (permission) {
-//       if (permission === "granted") {
-//         // 使用者同意授權
-//         var n = new Notification("Hi there!", notifyConfig); // 建立通知
-//       }
-//     });
-//   }
+  //   if (
+  //     Notification?.permission === "default" ||
+  //     Notification?.permission === "undefined"
+  //   ) {
+  //     Notification.requestPermission(function (permission) {
+  //       if (permission === "granted") {
+  //         // 使用者同意授權
+  //         var n = new Notification("Hi there!", notifyConfig); // 建立通知
+  //       }
+  //     });
+  //   }
   // ------- Notification end -------
 
   var mobileMenuList = document.querySelector(".mobileMenuList"),
@@ -184,7 +184,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
 
     var xDown = null;
     var yDown = null;
-    
+
     function getTouches(evt) {
       return (
         evt.touches || // browser API
@@ -210,14 +210,12 @@ if (typeof NodeList.prototype.forEach !== "function") {
       var yDiff = yDown - yUp;
       var timeDiff = Math.abs(touchtime - new Date().getTime());
       // -----------------------------------
-      if (
-        timeDiff > 400 
-      ) {
-          slideWrapper.style.transition = "transform .5s";
-          slideWrapper.style.transform =
-            "translateX(" + (Math.abs(xDiff) > 20
-              ? (xDiff < 0 ? 20 : -20) * 10
-              : xDiff * 10) + "px)";
+      if (timeDiff > 400) {
+        slideWrapper.style.transition = "transform .5s";
+        slideWrapper.style.transform =
+          "translateX(" +
+          (Math.abs(xDiff) > 20 ? (xDiff < 0 ? 20 : -20) * 10 : xDiff * 10) +
+          "px)";
       }
     }
     function handleTouchEnd(evt) {
@@ -256,7 +254,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
       slideWrapper.style.transform = "translateX(" + 0 + "px)";
     }
   }
-  
+
   // 上下張處理
   function slideHandler(type, autoFlag) {
     if (!actionFlag) return;
@@ -268,8 +266,6 @@ if (typeof NodeList.prototype.forEach !== "function") {
       slideBox[nextIndex].style.transition = "unset";
       slideBox[nextIndex].classList.remove("startRight");
     }
-
-    
     slideBox[activeIndex].classList.remove("active");
     slideBox[activeIndex].style.transition = transitionSecondDelay;
     slideBox[activeIndex].classList[type === "prev" ? "add" : "remove"](
@@ -284,24 +280,25 @@ if (typeof NodeList.prototype.forEach !== "function") {
       : activeIndex > 0
       ? activeIndex--
       : (activeIndex = slideBox.length - 1);
-    
 
     if (type === "next") {
+      activeHandler(activeIndex, "startRight", "unset");
+    } else {
       slideBox[activeIndex].style.transition = "unset";
-      slideBox[activeIndex].classList.add("startRight");
+      slideBox[activeIndex].classList.remove("startRight");
     }
 
-    slideBox[activeIndex].style.transition = transitionSecond;
-    slideBox[activeIndex].classList.add("active");
-   
+    setTimeout(() => {
+      activeHandler(activeIndex, "active");
+    }, 50);
+
     nextIndex =
       activeIndex == slideBox.length - 1
         ? 0
         : (activeIndex % (slideBox.length - 1)) + 1;
 
     if (type === "next") {
-      slideBox[nextIndex].style.transition = "unset";
-      slideBox[nextIndex].classList.add("startRight");
+      activeHandler(nextIndex, "startRight", "unset");
     }
     //     new Notification("Hi, welcome to SKODA !" + activeIndex, notifyConfig);
 
@@ -321,14 +318,13 @@ if (typeof NodeList.prototype.forEach !== "function") {
       element.removeAttribute("style");
     });
     document.querySelector(".dots .item.active").classList.remove("active");
-    
+
     // 上一張
     if (index < activeIndex) {
-      slideBox[activeIndex].style.transition = transitionSecond;
-      slideBox[activeIndex].classList.add("startRight");
+      activeHandler(activeIndex, "startRight");
+      slideBox[index].classList.remove("startRight");
       setTimeout(function () {
-        slideBox[index].style.transition = transitionSecond;
-        slideBox[index].classList.add("active");
+        activeHandler(index, "active");
       });
     }
     // 下一張
@@ -336,14 +332,18 @@ if (typeof NodeList.prototype.forEach !== "function") {
       slideBox[activeIndex].style.transition = transitionSecond;
       slideBox[index].classList.add("startRight");
       setTimeout(function () {
-        slideBox[activeIndex].classList.remove("startRight");
-        slideBox[index].style.transition = transitionSecond;
-        slideBox[index].classList.add("active");
+        activeHandler(index, "active");
       });
     }
-    
+
     activeIndex = index;
     dots[index].classList.add("active");
+  }
+
+  // 共用add class
+  function activeHandler(index, className, unset) {
+    slideBox[index].style.transition = unset ? "unset" : transitionSecond;
+    slideBox[index].classList.add(className);
   }
   //--------- slideBox end ---------
 

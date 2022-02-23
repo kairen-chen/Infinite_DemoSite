@@ -306,6 +306,7 @@ content {
   /* slideBox start */
   .slideBoxContainer,
   .slideWrapper {
+    user-select: none;
     width: 100%;
     height: 60vh;
     position: relative;
