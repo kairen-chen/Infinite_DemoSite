@@ -290,10 +290,10 @@ if (typeof NodeList.prototype.forEach !== "function") {
         slideBox[activeIndex].classList.remove("startRight");
       }
     }
-    setTimeout(function () {
+    // setTimeout(function () {
       slideBox[activeIndex].style.transition = transitionSecond;
       slideBox[activeIndex].classList.add("active");
-    }, 100);
+    // }, 100);
     //-----------因應dots增加 end-------------
     nextIndex =
       activeIndex == slideBox.length - 1
