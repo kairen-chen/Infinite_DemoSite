@@ -256,17 +256,20 @@ if (typeof NodeList.prototype.forEach !== "function") {
       slideWrapper.style.transform = "translateX(" + 0 + "px)";
     }
   }
+  
   // 上下張處理
   function slideHandler(type, autoFlag) {
     if (!actionFlag) return;
     if (!autoFlag) {
       autoObj.restTimer();
     }
+
     if (type === "prev") {
       slideBox[nextIndex].style.transition = "unset";
       slideBox[nextIndex].classList.remove("startRight");
     }
 
+    
     slideBox[activeIndex].classList.remove("active");
     slideBox[activeIndex].style.transition = transitionSecondDelay;
     slideBox[activeIndex].classList[type === "prev" ? "add" : "remove"](
@@ -281,20 +284,16 @@ if (typeof NodeList.prototype.forEach !== "function") {
       : activeIndex > 0
       ? activeIndex--
       : (activeIndex = slideBox.length - 1);
+    
 
-    //-----------因應dots增加 start-------------
     if (type === "next") {
       slideBox[activeIndex].style.transition = "unset";
       slideBox[activeIndex].classList.add("startRight");
-    } else {
-      if (activeIndex === slideBox.length - 1) {
-        slideBox[activeIndex].style.transition = "unset";
-        slideBox[activeIndex].classList.remove("startRight");
-      }
     }
-      slideBox[activeIndex].style.transition = transitionSecond;
-      slideBox[activeIndex].classList.add("active");
-    //-----------因應dots增加 end-------------
+
+    slideBox[activeIndex].style.transition = transitionSecond;
+    slideBox[activeIndex].classList.add("active");
+   
     nextIndex =
       activeIndex == slideBox.length - 1
         ? 0
@@ -304,13 +303,13 @@ if (typeof NodeList.prototype.forEach !== "function") {
       slideBox[nextIndex].style.transition = "unset";
       slideBox[nextIndex].classList.add("startRight");
     }
-
-//     new Notification("Hi, welcome to SKODA !" + activeIndex, notifyConfig);
+    //     new Notification("Hi, welcome to SKODA !" + activeIndex, notifyConfig);
 
     // handle dots
     document.querySelector(".dots .item.active").classList.remove("active");
     dots[activeIndex].classList.add("active");
   }
+
   // 處理dots
   function dotsHandler(index) {
     if (index === activeIndex) return;
@@ -322,7 +321,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
       element.removeAttribute("style");
     });
     document.querySelector(".dots .item.active").classList.remove("active");
-
+    
     // 上一張
     if (index < activeIndex) {
       slideBox[activeIndex].style.transition = transitionSecond;
@@ -342,6 +341,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
         slideBox[index].classList.add("active");
       });
     }
+    
     activeIndex = index;
     dots[index].classList.add("active");
   }
