@@ -184,7 +184,7 @@ if (typeof NodeList.prototype.forEach !== "function") {
 
     var xDown = null;
     var yDown = null;
-
+    
     function getTouches(evt) {
       return (
         evt.touches || // browser API
@@ -206,25 +206,37 @@ if (typeof NodeList.prototype.forEach !== "function") {
       }
       var xUp = evt.touches[0].clientX;
       var yUp = evt.touches[0].clientY;
-
       var xDiff = xDown - xUp;
       var yDiff = yDown - yUp;
       var timeDiff = Math.abs(touchtime - new Date().getTime());
-
       // -----------------------------------
-      // 滑動敏感度調整
       document.querySelector(".pamrContainer").innerHTML = "";
       document
         .querySelector(".pamrContainer")
         .append(`x : ${xDiff} , y : ${yDiff} , time : ${timeDiff}`);
-      //  Math.abs(xDiff) > 3 &&
-      //  Math.abs(yDiff) < 5 &&
-
-      // 上 / 下張
       if (
-        Math.abs(xDiff) > Math.abs(yDiff) &&
-        timeDiff > 15 &&
-        timeDiff < 120
+        timeDiff > 400 
+      ) {
+          slideWrapper.style.transition = "transform .5s";
+          slideWrapper.style.transform =
+            "translateX(" + (Math.abs(xDiff) > 20
+              ? (xDiff < 0 ? 20 : -20) * 10
+              : xDiff * 10) + "px)";
+      }
+    }
+    function handleTouchEnd(evt) {
+      var xUp = evt.changedTouches[0].clientX,
+        yUp = evt.changedTouches[0].clientY,
+        xDiff = xDown - xUp,
+        yDiff = yDown - yUp,
+        timeDiff = Math.abs(touchtime - new Date().getTime());
+
+      // 上 / 下張 靈敏度調整
+      if (
+        timeDiff <= 400 &&
+        timeDiff > 150 &&
+        Math.abs(xDown - xUp) > 50 &&
+        Math.abs(yDown - yUp) < 50
       ) {
         // -----------------------------------
         /*most significant*/
@@ -235,19 +247,8 @@ if (typeof NodeList.prototype.forEach !== "function") {
           /* left swipe */
           prev.click();
         }
-      } else {
-        // 反彈效果(目前有殘影,原因是換下一張時translateX無法從xDiff的位置接續滑入)
-        slideWrapper.style.transition = "transform .5s";
-        slideWrapper.style.transform =
-          "translateX(" +
-          (xDiff > 0 ? -xDiff * 10 : Math.abs(xDiff * 10)) +
-          "px)";
       }
-      /* reset values */
-      xDown = null;
-      yDown = null;
-    }
-    function handleTouchEnd(evt) {
+      // 重新計時
       autoObj.restTimer();
       // 放掉後定位於0px
       slideWrapper.style.transform = "translateX(" + 0 + "px)";
