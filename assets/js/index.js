@@ -97,8 +97,9 @@ if (typeof NodeList.prototype.forEach !== "function") {
     // 預設顯示第幾張
     activeIndex = 1,
     // 動畫秒數
-    transitionSecond = "transform .5s",
-    transitionSecondDelay = "transform .5s 100ms",
+    transitionSecond = "transform .4s",
+    // transitionSecondDelay = "transform .5s 100ms",
+    transitionSecondDelay = "transform .4s",
     // 自動播放參數
     autoObj = {
       auto: true,
